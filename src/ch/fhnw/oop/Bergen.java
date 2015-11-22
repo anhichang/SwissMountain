@@ -11,7 +11,7 @@ import javafx.scene.control.ListCell;
  */
 public class Bergen extends ListCell<Bergen> {
 
-    private final IntegerProperty ID        = new SimpleIntegerProperty();
+    private final IntegerProperty ID                = new SimpleIntegerProperty();
     private final StringProperty name               = new SimpleStringProperty();
     private final StringProperty hoehe              = new SimpleStringProperty();
     private final StringProperty dominanz           = new SimpleStringProperty();
