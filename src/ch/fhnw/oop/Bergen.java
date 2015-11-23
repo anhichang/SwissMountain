@@ -1,9 +1,6 @@
 package ch.fhnw.oop;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.scene.control.ListCell;
 
 /**
@@ -11,9 +8,9 @@ import javafx.scene.control.ListCell;
  */
 public class Bergen extends ListCell<Bergen> {
 
-    private final IntegerProperty ID                = new SimpleIntegerProperty();
+    private final IntegerProperty idBerg             = new SimpleIntegerProperty();
     private final StringProperty name               = new SimpleStringProperty();
-    private final StringProperty hoehe              = new SimpleStringProperty();
+    private final DoubleProperty hoehe              = new SimpleDoubleProperty();
     private final StringProperty dominanz           = new SimpleStringProperty();
     private final StringProperty scharten           = new SimpleStringProperty();
     private final StringProperty kmBis              = new SimpleStringProperty();
@@ -25,9 +22,9 @@ public class Bergen extends ListCell<Bergen> {
     private final StringProperty bildunterschrieft  = new SimpleStringProperty();
 
     public Bergen(String[] line){
-        setId(line[0]);
+        setidBerg(Integer.parseInt(line[0]));
         setName(line[1]);
-        setHoehe(line[2]);
+        setHoehe(Double.parseDouble(line[2]));
         setDominanz(line[3]);
         setScharten(line[4]);
         setKmBis(line[5]);
@@ -37,6 +34,7 @@ public class Bergen extends ListCell<Bergen> {
         setKantone(line[9]);
         setGebiet(line[10]);
         setBildunterschrieft(line[11]);
+        System.out.println(getidBerg());
     }
 
     @Override
@@ -49,19 +47,19 @@ public class Bergen extends ListCell<Bergen> {
         }
         Bergen resultat = (Bergen) o;
 
-        return getId().equals(resultat.getId());
+        return getidBerg()==(resultat.getidBerg());
     }
 
     @Override
     public int hashCode() {
-        return ID.hashCode();
+        return idBerg.hashCode();
     }
 
     public String infoAsLine() {
         return String.join("\t",
-                getId(),
+                Integer.toString(getidBerg()),
                 getName(),
-                getHoehe(),
+                Double.toString(getHoehe()),
                 getDominanz(),
                 getScharten(),
                 getKmBis(),
@@ -72,16 +70,16 @@ public class Bergen extends ListCell<Bergen> {
                 getBildunterschrieft()
         );
     }
-    public int getID() {
-        return ID.get();
+    public int getidBerg() {
+        return idBerg.get();
     }
 
-    public IntegerProperty IDProperty() {
-        return ID;
+    public IntegerProperty idBergProperty() {
+        return idBerg;
     }
 
-    public void setID(int id) {
-        this.ID.set(id);
+    public void setidBerg(int id) {
+        this.idBerg.set(id);
     }
 
     public String getName() {
@@ -96,15 +94,15 @@ public class Bergen extends ListCell<Bergen> {
         this.name.set(name);
     }
 
-    public String getHoehe() {
+    public double getHoehe() {
         return hoehe.get();
     }
 
-    public StringProperty hoeheProperty() {
+    public DoubleProperty hoeheProperty() {
         return hoehe;
     }
 
-    public void setHoehe(String hoehe) {
+    public void setHoehe(double hoehe) {
         this.hoehe.set(hoehe);
     }
 
