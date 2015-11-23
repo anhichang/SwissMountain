@@ -13,7 +13,6 @@ import javafx.scene.layout.*;
  */
 public class MountainUI extends BorderPane {
     private final Mountain model;
-    private TableView<Bergen> tabelle;
 
     Button speichern;
     Button add;
@@ -154,13 +153,13 @@ public class MountainUI extends BorderPane {
         TableView<Bergen> tableView = new TableView<>(model.getResulate());
 
         TableColumn<Bergen, Number> IDCol = new TableColumn<>("ID");
-        IDCol.setCellValueFactory(param -> param.getValue().IDProperty());
+        IDCol.setCellValueFactory(param -> param.getValue().idBergProperty());
 //        IDCol.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().idProperty()).asObject());
 
         TableColumn<Bergen, String> NameCol = new TableColumn<>("Name");
         NameCol.setCellValueFactory(param -> param.getValue().nameProperty());
 
-        TableColumn<Bergen, String> hoeheCol1 = new TableColumn<>("Höhe");
+        TableColumn<Bergen, Number> hoeheCol1 = new TableColumn<>("Höhe");
         hoeheCol1.setCellValueFactory(param -> param.getValue().hoeheProperty());
 //        kantonCol1.setCellFactory(param -> param.getValue().kürzelProperty());
 
