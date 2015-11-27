@@ -128,7 +128,7 @@ public class MountainUI extends BorderPane {
 
 //                hoechi.textProperty().bindBidirectional(tableView.getSelectionModel().getSelectedItem().hightProperty(), new );
 
-                name.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
+//                name.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
                 hoehe.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
                 dominanz.textProperty().bind(tableView.getSelectionModel().getSelectedItem().prominenceProperty().asString());
                 scharten.textProperty().bind(tableView.getSelectionModel().getSelectedItem().isolationProperty().asString());
@@ -141,6 +141,14 @@ public class MountainUI extends BorderPane {
                 bildunterschrift.textProperty().bind(tableView.getSelectionModel().getSelectedItem().captionProperty());
             }
         });
+        name.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                name.textProperty().bindBidirectional(tableView.getSelectionModel().getSelectedItem().nameProperty());
+            }
+        });
+
+
     }
 
     private SplitPane createsplitPane(){

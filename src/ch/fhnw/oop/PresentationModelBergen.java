@@ -71,25 +71,6 @@ public class PresentationModelBergen {
         );
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public int getIdBerg() {
         return idBerg.get();
     }
