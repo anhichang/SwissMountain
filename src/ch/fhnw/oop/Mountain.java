@@ -1,7 +1,5 @@
 package ch.fhnw.oop;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -25,19 +23,17 @@ public class Mountain {
 
     private static final String TAB = ";";
 
-    private final StringProperty applicationTitle = new SimpleStringProperty("Bergen");
-
-    private final ObservableList<Bergen> hello = FXCollections.observableArrayList();
+    private final ObservableList<PresentationModelBergen> listBergen = FXCollections.observableArrayList();
 
     public Mountain() {
-        hello.addAll(readFromFile());
+        listBergen.addAll(readFromFile());
     }
 
     public void save() {
         try (BufferedWriter writer = Files.newBufferedWriter(getPath(FILE_NAME, true))) {
-            writer.write("ID\tName\tGebiet\tKantone\tkmBis\tDominanz\tmBis\tScherten\tName\tKantone\tGebiet\tBilbeschreibung");
+            writer.write("ID\tName\tGebiet\tKantone\tkmBis\tDominanz\tkanton\tmBis\tScherten\tName\tKantone\tGebiet\tBilbeschreibung");
             writer.newLine();
-            hello.stream().forEach(resultat -> {
+            listBergen.stream().forEach(resultat -> {
                 try {
                     writer.write(resultat.infoAsLine());
                     writer.newLine();
@@ -50,10 +46,10 @@ public class Mountain {
         }
     }
 
-    private List<Bergen> readFromFile() {
+    private List<PresentationModelBergen> readFromFile() {
         try (Stream<String> stream = getStreamOfLines(FILE_NAME)) {
-            return stream.skip(0)                              // erste Zeile ist die Headerzeile; ueberspringen
-                    .map(s -> new Bergen(s.split(TAB))) // aus jeder Zeile ein Objekt machen
+            return stream.skip(1)                              // erste Zeile ist die Headerzeile; ueberspringen
+                    .map(s -> new PresentationModelBergen(s.split(TAB))) // aus jeder Zeile ein Objekt machen
                     .collect(Collectors.toList());        // alles aufsammeln
         }
     }
@@ -77,16 +73,8 @@ public class Mountain {
         }
     }
 
-    public String getApplicationTitle() {
-        return applicationTitle.get();
-    }
-
-    public StringProperty applicationTitleProperty() {
-        return applicationTitle;
-    }
-
-    public ObservableList<Bergen> getResulate() {
-        return hello;
+    public ObservableList<PresentationModelBergen> getResulate() {
+        return listBergen;
     }
 
 }

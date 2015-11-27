@@ -1,11 +1,14 @@
 package ch.fhnw.oop;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 /**
@@ -13,6 +16,7 @@ import javafx.scene.layout.*;
  */
 public class MountainUI extends BorderPane {
     private final Mountain model;
+    TableView<PresentationModelBergen> tableView;
 
     Button speichern;
     Button add;
@@ -23,7 +27,7 @@ public class MountainUI extends BorderPane {
     TextField suche;
 
     Label nameOben;
-    Label kmOben;
+    Label hoeheOben;
     Label gebietOben;
 
     ImageView image;
@@ -52,14 +56,20 @@ public class MountainUI extends BorderPane {
     TextField region;
     TextField gebiet;
 
-    public MountainUI(Mountain model) {
+    NumberTextField hoechi;
+
+    public MountainUI( Mountain model) {
         this.model = model;
+        tableView = new TableView<>(model.getResulate());
         initializeControls();
         layoutControls();
         eventEvent();
     }
 
     private void initializeControls() {
+
+        hoechi = new NumberTextField();
+
         speichern = new Button("sp");
         add = new Button("add");
         loeschen = new Button("loe");
@@ -68,9 +78,9 @@ public class MountainUI extends BorderPane {
 
         suche = new TextField("Suche");
 
-        nameOben = new Label("-----");
-        kmOben = new Label("-----");
-        gebietOben = new Label("----");
+        nameOben = new Label();
+        hoeheOben = new Label();
+        gebietOben = new Label();
 
         Image picture = new Image("0-1.jpg");
         image = new ImageView(picture);
@@ -108,13 +118,33 @@ public class MountainUI extends BorderPane {
 
     }
 
-    private void eventEvent(){
+    private void eventEvent() {
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nameOben.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
+                hoeheOben.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
+                gebietOben.textProperty().bind(tableView.getSelectionModel().getSelectedItem().regionProperty());
 
+//                hoechi.textProperty().bindBidirectional(tableView.getSelectionModel().getSelectedItem().hightProperty(), new );
+
+                name.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
+                hoehe.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
+                dominanz.textProperty().bind(tableView.getSelectionModel().getSelectedItem().prominenceProperty().asString());
+                scharten.textProperty().bind(tableView.getSelectionModel().getSelectedItem().isolationProperty().asString());
+                km.textProperty().bind(tableView.getSelectionModel().getSelectedItem().prominencePointProperty());
+                mBis.textProperty().bind(tableView.getSelectionModel().getSelectedItem().isolationPointProperty());
+                typ.textProperty().bind(tableView.getSelectionModel().getSelectedItem().typProperty());
+                region.textProperty().bind(tableView.getSelectionModel().getSelectedItem().regionProperty());
+                kantone.textProperty().bind(tableView.getSelectionModel().getSelectedItem().cantonProperty());
+                gebiet.textProperty().bind(tableView.getSelectionModel().getSelectedItem().rangeProperty());
+                bildunterschrift.textProperty().bind(tableView.getSelectionModel().getSelectedItem().captionProperty());
+            }
+        });
     }
 
     private SplitPane createsplitPane(){
         SplitPane splitPanel = new SplitPane();
-        splitPanel.setOrientation(Orientation.HORIZONTAL);
         splitPanel.setPrefSize(300,1000);
         splitPanel.getItems().addAll(createlistView(),createGridPane());
         splitPanel.setMinWidth(600);
@@ -149,21 +179,24 @@ public class MountainUI extends BorderPane {
         return gridPane;
     }
 
-    private TableView<Bergen> createlistView(){
-        TableView<Bergen> tableView = new TableView<>(model.getResulate());
+    private TableView<PresentationModelBergen> createlistView(){
 
-        TableColumn<Bergen, Number> IDCol = new TableColumn<>("ID");
-        IDCol.setCellValueFactory(param -> param.getValue().idBergProperty());
+        TableColumn<PresentationModelBergen, Number> iDCol = new TableColumn<>("ID");
+        iDCol.setCellValueFactory(param -> param.getValue().idBergProperty());
+
 //        IDCol.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().idProperty()).asObject());
 
-        TableColumn<Bergen, String> NameCol = new TableColumn<>("Name");
-        NameCol.setCellValueFactory(param -> param.getValue().nameProperty());
+        TableColumn<PresentationModelBergen, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(param -> param.getValue().nameProperty());
 
-        TableColumn<Bergen, Number> hoeheCol1 = new TableColumn<>("Höhe");
-        hoeheCol1.setCellValueFactory(param -> param.getValue().hoeheProperty());
+        TableColumn<PresentationModelBergen, Number> hoeheCol = new TableColumn<>("Höhe");
+        hoeheCol.setCellValueFactory(param -> param.getValue().hightProperty());
 //        kantonCol1.setCellFactory(param -> param.getValue().kürzelProperty());
 
-        tableView.getColumns().addAll(IDCol, NameCol,hoeheCol1);
+//        TableColumn<Wappen, ImageView> bildCol = new TableColumn<>("Wappen");
+//        bildCol.setCellValueFactory(param -> param.getValue().getImageview1().getImage().);
+
+        tableView.getColumns().addAll(iDCol, nameCol,hoeheCol);
         return tableView;
     }
 
@@ -181,7 +214,7 @@ public class MountainUI extends BorderPane {
         gridPane.setPadding(new Insets(5, 10, 10, 10));
 
         gridPane.add(nameOben,0,0); //colIndex, rowIndex, colSpan, rowSpan
-        gridPane.add(kmOben,0,1);
+        gridPane.add(hoeheOben,0,1);
         gridPane.add(gebietOben,0,2);
 
         gridPane.add(image, 2,0, 2,4 );
