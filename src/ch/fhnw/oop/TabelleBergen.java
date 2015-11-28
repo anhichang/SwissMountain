@@ -15,7 +15,6 @@ public class TabelleBergen extends TableView {
 
     public TabelleBergen(ReadMountain readMountain) {
         this.model = readMountain;
-        initializeControls();
         System.out.println(readMountain.getListBergen().get(20).getHight() + " TabelleBergen");
     }
 
@@ -37,7 +36,7 @@ public class TabelleBergen extends TableView {
         hoeheCol.setCellValueFactory(param -> param.getValue().hightProperty());
 
         tableView.getColumns().addAll(iDCol, nameCol,hoeheCol);
-        System.out.println(model.getListBergen().get(20).getHight() + " TabelleBergen");
+        System.out.println(model.getListBergen().get(1).getHight() + " TabelleBergen / resultat");
 
         return tableView;
     }

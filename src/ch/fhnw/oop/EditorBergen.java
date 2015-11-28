@@ -1,6 +1,5 @@
 package ch.fhnw.oop;
 
-import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -19,6 +18,7 @@ import javafx.scene.layout.RowConstraints;
  */
 public class EditorBergen extends GridPane {
     TableView<Mountain> tableView;
+    Mountain mountain;
 
     ImageView image;
     Label nameOben;
@@ -37,20 +37,29 @@ public class EditorBergen extends GridPane {
     Label regionLabel;
     Label gebietLabel;
 
-    TextField name;
-    TextField dominanz;
-    TextField km;
-    TextField typ;
-    TextField kantone;
-    TextField bildunterschrift;
-    TextField hoehe;
-    TextField scharten;
-    TextField mBis;
-    TextField region;
-    TextField gebiet;
+    public TextField getNameTextfield() {
+        return nameTextfield;
+    }
+
+    public void setNameTextfield(TextField nameTextfield) {
+        this.nameTextfield = nameTextfield;
+    }
+
+    TextField nameTextfield;
+    TextField dominanzTextfield;
+    TextField kmTextfield;
+    TextField typTextfield;
+    TextField kantoneTextfield;
+    TextField bildunterschriftTextfield;
+    TextField hoeheTextfield;
+    TextField schartenTextfield;
+    TextField mBisTextfield;
+    TextField regionTextfield;
+    TextField gebietTextfield;
 
     public EditorBergen(ReadMountain model ) {
         this.tableView = new TableView<>(model.getListBergen());
+        mountain = tableView.getSelectionModel().getSelectedItem();
         initializeControls();
         layoutControls();
         addEventHandlers();
@@ -80,17 +89,17 @@ public class EditorBergen extends GridPane {
         regionLabel = new Label("Region");
         gebietLabel = new Label("Gebiet");
 
-        name = new TextField();
-        dominanz = new TextField();
-        km = new TextField();
-        typ  = new TextField();
-        kantone = new TextField();
-        bildunterschrift = new TextField();
-        hoehe = new TextField();
-        scharten = new TextField();
-        mBis = new TextField();
-        region = new TextField();
-        gebiet = new TextField();
+        nameTextfield = new TextField();
+        dominanzTextfield = new TextField();
+        kmTextfield = new TextField();
+        typTextfield = new TextField();
+        kantoneTextfield = new TextField();
+        bildunterschriftTextfield = new TextField();
+        hoeheTextfield = new TextField();
+        schartenTextfield = new TextField();
+        mBisTextfield = new TextField();
+        regionTextfield = new TextField();
+        gebietTextfield = new TextField();
     }
 
     private void layoutControls() {
@@ -117,12 +126,12 @@ public class EditorBergen extends GridPane {
         add(kantoneLabel,0,11);
         add(bildunterschriftLabel,0,12);
 
-        add(name,1,7);
-        add(dominanz,1,8);
-        add(km,1,9);
-        add(typ,1,10);
-        add(kantone,1,11);
-        add(bildunterschrift,1,12,4,1);
+        add(nameTextfield,1,7);
+        add(dominanzTextfield,1,8);
+        add(kmTextfield,1,9);
+        add(typTextfield,1,10);
+        add(kantoneTextfield,1,11);
+        add(bildunterschriftTextfield,1,12,4,1);
 
         add(hoeheLabel,2,7);
         add(schartenLabel,2,8);
@@ -130,25 +139,24 @@ public class EditorBergen extends GridPane {
         add(regionLabel,2,10);
         add(gebietLabel,2,11);
 
-        add(hoehe,3,7);
-        add(scharten,3,8);
-        add(mBis,3,9);
-        add(region,3,10);
-        add(gebiet,3,11);
+        add(hoeheTextfield,3,7);
+        add(schartenTextfield,3,8);
+        add(mBisTextfield,3,9);
+        add(regionTextfield,3,10);
+        add(gebietTextfield,3,11);
     }
     private void addBindings() {
+
+    }
+
+    public void addEventHandlers() {
         tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
         {@Override
         public void handle(MouseEvent event) {
-            nameOben.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
-            hoehe.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
+            hoeheTextfield.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
             System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
         }
         });
-    }
-
-    private void addEventHandlers() {
-
     }
 
     public void addValueChangedListeners(){
