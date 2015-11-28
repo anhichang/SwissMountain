@@ -16,7 +16,7 @@ public class MountainUI extends BorderPane {
     private final TableView<Mountain> tableView;
 
     public MountainUI( ReadMountain model) {
-        this.editorBergen = new EditorBergen();
+        this.editorBergen = new EditorBergen( model);
         this.headerBergen = new HeaderBergen();
 
         tableView = new TabelleBergen(model).initializeResultatTabelle();

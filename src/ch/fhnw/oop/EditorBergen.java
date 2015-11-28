@@ -1,10 +1,14 @@
 package ch.fhnw.oop;
 
+import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -14,7 +18,8 @@ import javafx.scene.layout.RowConstraints;
  * Created by ANhi on 11/27/2015.
  */
 public class EditorBergen extends GridPane {
-    ReadMountain model;
+    TableView<Mountain> tableView;
+
     ImageView image;
     Label nameOben;
     Label hoeheOben;
@@ -44,7 +49,8 @@ public class EditorBergen extends GridPane {
     TextField region;
     TextField gebiet;
 
-    public EditorBergen() {
+    public EditorBergen(ReadMountain model ) {
+        this.tableView = new TableView<>(model.getListBergen());
         initializeControls();
         layoutControls();
         addEventHandlers();
@@ -131,10 +137,18 @@ public class EditorBergen extends GridPane {
         add(gebiet,3,11);
     }
     private void addBindings() {
-        name.textProperty().bind(model.getListBergen().<>);
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {@Override
+        public void handle(MouseEvent event) {
+            nameOben.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
+            hoehe.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
+            System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
+        }
+        });
     }
 
     private void addEventHandlers() {
+
     }
 
     public void addValueChangedListeners(){

@@ -20,6 +20,7 @@ import java.util.stream.Stream;
  * Created by ANhi on 11/27/2015.
  */
 public class ReadMountain {
+
     private final StringProperty windowTitle        = new SimpleStringProperty("MountainApp");
     private static final String FILE_NAME           = "mountains.csv";
     private static final String TAB = ";";
