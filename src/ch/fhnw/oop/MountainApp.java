@@ -12,7 +12,7 @@ public class MountainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Mountain model = new Mountain();
+        ReadMountain model = new ReadMountain();
 
         Parent rootPanel = new MountainUI(model);
 
@@ -27,7 +27,7 @@ public class MountainApp extends Application {
         primaryStage.setWidth(1000);
         primaryStage.setHeight(700);
 
-        primaryStage.setTitle("Mountains");
+        primaryStage.setTitle("hh");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
