@@ -11,13 +11,13 @@ import javafx.scene.layout.*;
  * Created by ANhi on 11/27/2015.
  */
 public class HeaderBergen extends GridPane {
-    Button speichern;
-    Button add;
-    Button loeschen;
-    Button zurueck;
-    Button vorwaerts;
+    private Button speichern;
+    private Button add;
+    private Button loeschen;
+    private Button zurueck;
+    private Button vorwaerts;
 
-    TextField suche;
+    private TextField suche;
 
     public HeaderBergen(){
         initializeControls();

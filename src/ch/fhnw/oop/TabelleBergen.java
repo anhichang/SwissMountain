@@ -9,20 +9,22 @@ import javafx.util.Callback;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class TabelleBergen extends TableView {
-    TableView<Mountain> tableView;
-    ReadMountain model;
+public class TabelleBergen extends TableView<Mountain> {
+
+    private TableView<Mountain> tableView;
+    private ReadMountain model;
 
     public TabelleBergen(ReadMountain readMountain) {
         this.model = readMountain;
         System.out.println(readMountain.getListBergen().get(20).getHight() + " TabelleBergen");
+        initializeControls();
     }
 
     private void initializeControls() {
         tableView = initializeResultatTabelle();
     }
 
-    public TableView<Mountain> initializeResultatTabelle() {
+    private TableView<Mountain> initializeResultatTabelle() {
 
         tableView = new TableView<>(model.getListBergen());
 
@@ -38,6 +40,10 @@ public class TabelleBergen extends TableView {
         tableView.getColumns().addAll(iDCol, nameCol,hoeheCol);
         System.out.println(model.getListBergen().get(1).getHight() + " TabelleBergen / resultat");
 
+        return tableView;
+    }
+
+    public TableView<Mountain> getTableView() {
         return tableView;
     }
 

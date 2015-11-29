@@ -1,5 +1,6 @@
 package ch.fhnw.oop;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -17,54 +18,46 @@ import javafx.scene.layout.RowConstraints;
  * Created by ANhi on 11/27/2015.
  */
 public class EditorBergen extends GridPane {
-    TableView<Mountain> tableView;
-    Mountain mountain;
+    private TableView<Mountain> tableView;
 
-    ImageView image;
-    Label nameOben;
-    Label hoeheOben;
-    Label gebietOben;
 
-    Label nameLabel;
-    Label dominanzLabel;
-    Label kmLabel;
-    Label typLabel;
-    Label kantoneLabel;
-    Label bildunterschriftLabel;
-    Label hoeheLabel;
-    Label schartenLabel;
-    Label mBisLabel;
-    Label regionLabel;
-    Label gebietLabel;
+    private ImageView image;
+    private Label nameOben;
+    private Label hoeheOben;
+    private Label gebietOben;
 
-    public TextField getNameTextfield() {
-        return nameTextfield;
-    }
+    private Label nameLabel;
+    private Label dominanzLabel;
+    private Label kmLabel;
+    private Label typLabel;
+    private Label kantoneLabel;
+    private Label bildunterschriftLabel;
+    private Label hoeheLabel;
+    private Label schartenLabel;
+    private Label mBisLabel;
+    private Label regionLabel;
+    private Label gebietLabel;
 
-    public void setNameTextfield(TextField nameTextfield) {
-        this.nameTextfield = nameTextfield;
-    }
-
-    TextField nameTextfield;
-    TextField dominanzTextfield;
-    TextField kmTextfield;
-    TextField typTextfield;
-    TextField kantoneTextfield;
-    TextField bildunterschriftTextfield;
-    TextField hoeheTextfield;
-    TextField schartenTextfield;
-    TextField mBisTextfield;
-    TextField regionTextfield;
-    TextField gebietTextfield;
+    private TextField nameTextfield;
+    private TextField dominanzTextfield;
+    private TextField kmTextfield;
+    private TextField typTextfield;
+    private TextField kantoneTextfield;
+    private TextField bildunterschriftTextfield;
+    private TextField hoeheTextfield;
+    private TextField schartenTextfield;
+    private TextField mBisTextfield;
+    private TextField regionTextfield;
+    private TextField gebietTextfield;
 
     public EditorBergen(ReadMountain model ) {
         this.tableView = new TableView<>(model.getListBergen());
-        mountain = tableView.getSelectionModel().getSelectedItem();
         initializeControls();
         layoutControls();
         addEventHandlers();
         addValueChangedListeners();
         addBindings();
+
     }
 
     private void initializeControls() {
@@ -146,14 +139,13 @@ public class EditorBergen extends GridPane {
         add(gebietTextfield,3,11);
     }
     private void addBindings() {
-
     }
 
     public void addEventHandlers() {
         tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
         {@Override
         public void handle(MouseEvent event) {
-            hoeheTextfield.textProperty().bind(tableView.getSelectionModel().getSelectedItem().hightProperty().asString());
+            nameTextfield.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
             System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
         }
         });
