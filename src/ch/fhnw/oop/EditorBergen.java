@@ -1,57 +1,55 @@
 package ch.fhnw.oop;
 
-import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.util.converter.NumberStringConverter;
 
 /**
  * Created by ANhi on 11/27/2015.
  */
 public class EditorBergen extends GridPane {
-    private TableView<Mountain> tableView;
-
+   // private TableView<Mountain> tableView; VERBOTEN
+    private ReadMountain model;
 
     private ImageView image;
     private Label nameOben;
-    private Label hoeheOben;
-    private Label gebietOben;
+    private Label hightOben;
+    private Label regionOben;
 
     private Label nameLabel;
-    private Label dominanzLabel;
-    private Label kmLabel;
+    private Label isolationLabel;
+    private Label isolationPointLabel;
     private Label typLabel;
-    private Label kantoneLabel;
-    private Label bildunterschriftLabel;
-    private Label hoeheLabel;
-    private Label schartenLabel;
-    private Label mBisLabel;
+    private Label cantonLabel;
+    private Label captionLabel;
+    private Label hightLabel;
+    private Label prominanceLabel;
+    private Label prominancePointLabel;
     private Label regionLabel;
-    private Label gebietLabel;
+    private Label rangeLabel;
 
     private TextField nameTextfield;
-    private TextField dominanzTextfield;
-    private TextField kmTextfield;
+    private TextField isolationTextfield;
+    private TextField isolationPointfield;
     private TextField typTextfield;
-    private TextField kantoneTextfield;
-    private TextField bildunterschriftTextfield;
-    private TextField hoeheTextfield;
-    private TextField schartenTextfield;
-    private TextField mBisTextfield;
+    private TextField cantonTextfield;
+    private TextField captionTextfield;
+    private TextField hightTextfield;
+    private TextField prominanceTextfield;
+    private TextField prominancePointTextfield;
     private TextField regionTextfield;
-    private TextField gebietTextfield;
+    private TextField rangeTextfield;
 
     public EditorBergen(ReadMountain model ) {
-        this.tableView = new TableView<>(model.getListBergen());
+        this.model = model;
         initializeControls();
         layoutControls();
         addEventHandlers();
@@ -62,8 +60,8 @@ public class EditorBergen extends GridPane {
 
     private void initializeControls() {
         nameOben = new Label();
-        hoeheOben = new Label();
-        gebietOben = new Label();
+        hightOben = new Label();
+        regionOben = new Label();
 
         Image picture = new Image("0-1.jpg");
         image = new ImageView(picture);
@@ -71,28 +69,28 @@ public class EditorBergen extends GridPane {
         image.setFitWidth(200);
 
         nameLabel = new Label("Name");
-        dominanzLabel = new Label("Dominanz");
-        kmLabel = new Label("Km bis");
+        isolationLabel = new Label("Dominanz");
+        isolationPointLabel = new Label("Km bis");
         typLabel = new Label("Typ");
-        kantoneLabel = new Label("Kantone");
-        bildunterschriftLabel = new Label("Bildunterschrift");
-        hoeheLabel = new Label("Höhe");
-        schartenLabel = new Label("Scharten");
-        mBisLabel = new Label("m bis");
+        cantonLabel = new Label("Kantone");
+        captionLabel = new Label("Bildunterschrift");
+        hightLabel = new Label("Höhe");
+        prominanceLabel = new Label("Scharten");
+        prominancePointLabel = new Label("m bis");
         regionLabel = new Label("Region");
-        gebietLabel = new Label("Gebiet");
+        rangeLabel = new Label("Gebiet");
 
         nameTextfield = new TextField();
-        dominanzTextfield = new TextField();
-        kmTextfield = new TextField();
+        isolationTextfield = new TextField();
+        isolationPointfield = new TextField();
         typTextfield = new TextField();
-        kantoneTextfield = new TextField();
-        bildunterschriftTextfield = new TextField();
-        hoeheTextfield = new TextField();
-        schartenTextfield = new TextField();
-        mBisTextfield = new TextField();
+        cantonTextfield = new TextField();
+        captionTextfield = new TextField();
+        hightTextfield = new TextField();
+        prominanceTextfield = new TextField();
+        prominancePointTextfield = new TextField();
         regionTextfield = new TextField();
-        gebietTextfield = new TextField();
+        rangeTextfield = new TextField();
     }
 
     private void layoutControls() {
@@ -107,52 +105,85 @@ public class EditorBergen extends GridPane {
         setPadding(new Insets(5, 10, 10, 10));
 
         add(nameOben,0,0); //colIndex, rowIndex, colSpan, rowSpan
-        add(hoeheOben,0,1);
-        add(gebietOben,0,2);
+        add(hightOben,0,1);
+        add(regionOben,0,2);
 
         add(image, 2,0, 2,4 );
 
         add(nameLabel,0,7);
-        add(dominanzLabel,0,8);
-        add(kmLabel,0,9);
+        add(isolationLabel,0,8);
+        add(isolationPointLabel,0,9);
         add(typLabel,0,10);
-        add(kantoneLabel,0,11);
-        add(bildunterschriftLabel,0,12);
+        add(cantonLabel,0,11);
+        add(captionLabel,0,12);
 
         add(nameTextfield,1,7);
-        add(dominanzTextfield,1,8);
-        add(kmTextfield,1,9);
+        add(isolationTextfield,1,8);
+        add(isolationPointfield,1,9);
         add(typTextfield,1,10);
-        add(kantoneTextfield,1,11);
-        add(bildunterschriftTextfield,1,12,4,1);
+        add(cantonTextfield,1,11);
+        add(captionTextfield,1,12,4,1);
 
-        add(hoeheLabel,2,7);
-        add(schartenLabel,2,8);
-        add(mBisLabel,2,9);
+        add(hightLabel,2,7);
+        add(prominanceLabel,2,8);
+        add(prominancePointLabel,2,9);
         add(regionLabel,2,10);
-        add(gebietLabel,2,11);
+        add(rangeLabel,2,11);
 
-        add(hoeheTextfield,3,7);
-        add(schartenTextfield,3,8);
-        add(mBisTextfield,3,9);
+        add(hightTextfield,3,7);
+        add(prominanceTextfield,3,8);
+        add(prominancePointTextfield,3,9);
         add(regionTextfield,3,10);
-        add(gebietTextfield,3,11);
+        add(rangeTextfield,3,11);
     }
     private void addBindings() {
     }
 
     public void addEventHandlers() {
-        tableView.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {@Override
-        public void handle(MouseEvent event) {
-            nameTextfield.textProperty().bind(tableView.getSelectionModel().getSelectedItem().nameProperty());
-            System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
-        }
-        });
+
+//        observableList.addListener(new ListChangeListener() {
+//            @Override
+//            public void onChanged(ListChangeListener.Change change) {
+//                System.out.println("change!");
+//            }
+//        });
     }
 
     public void addValueChangedListeners(){
+        model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
+            // unbind von allen Properties auf oldSelection
+            //bind von allen Properties auf newSelection
+            // z.B. für 'name'
+            if(oldSelection != null){
+                nameTextfield.textProperty().unbindBidirectional(oldSelection.nameProperty());
+                isolationTextfield.textProperty().unbindBidirectional(oldSelection.isolationProperty());
+                isolationPointfield.textProperty().unbindBidirectional(oldSelection.isolationPointProperty());
+                typTextfield.textProperty().unbindBidirectional(oldSelection.typProperty());
+                cantonTextfield.textProperty().unbindBidirectional(oldSelection.cantonProperty());
+                captionTextfield.textProperty().unbindBidirectional(oldSelection.captionProperty());
+                hightTextfield.textProperty().unbindBidirectional(oldSelection.hightProperty());
+                prominanceTextfield.textProperty().unbindBidirectional(oldSelection.prominenceProperty());
+                prominancePointTextfield.textProperty().unbindBidirectional(oldSelection.prominencePointProperty());
+                regionTextfield.textProperty().unbindBidirectional(oldSelection.regionProperty());
+                rangeTextfield.textProperty().unbindBidirectional(oldSelection.rangeProperty());
 
+            }
+            if(newSelection != null){
+                nameTextfield.textProperty().bindBidirectional(newSelection.nameProperty());
+                isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter());
+                isolationPointfield.textProperty().bindBidirectional(newSelection.isolationPointProperty());
+                typTextfield.textProperty().bindBidirectional(newSelection.typProperty());
+                cantonTextfield.textProperty().bindBidirectional(newSelection.cantonProperty());
+                captionTextfield.textProperty().bindBidirectional(newSelection.captionProperty());
+                hightTextfield.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
+                prominanceTextfield.textProperty().bindBidirectional(newSelection.prominenceProperty(), new NumberStringConverter());
+                prominancePointTextfield.textProperty().bindBidirectional(newSelection.prominencePointProperty());
+                regionTextfield.textProperty().bindBidirectional(newSelection.regionProperty());
+                rangeTextfield.textProperty().bindBidirectional(newSelection.rangeProperty());
+            }
+
+        });
     }
+
 
 }

@@ -17,12 +17,13 @@ public class MountainUI extends BorderPane {
     private final EditorBergen editorBergen;
     private final HeaderBergen headerBergen;
     private final TabelleBergen tabelleBergen;
+//    private final TableView<Mountain> tableView;
 
     public MountainUI( ReadMountain model) {
         this.editorBergen = new EditorBergen(model);
         this.headerBergen = new HeaderBergen();
         this.tabelleBergen = new TabelleBergen(model);
-//        tableView = new TabelleBergen(model).initializeResultatTabelle();
+//        tableView = new TableView<>(model.getListBergen());
         layoutControls();
         eventEvent();
         System.out.println(model.getListBergen().get(1).getIdBerg() + " MountainUI");
@@ -36,6 +37,7 @@ public class MountainUI extends BorderPane {
         initializeControls();
         setTop(headerBergen);
         setCenter(createsplitPane());
+        editorBergen.addEventHandlers();
     }
 
     private void eventEvent() {
@@ -43,15 +45,17 @@ public class MountainUI extends BorderPane {
         {@Override
         public void handle(MouseEvent event) {
 //            System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
+//            editorBergen.getNameTextfield().textProperty().bind(tableView.getSelectionModel().getSelectedItem().cantonProperty());
 
         }
         });
     }
 
+
     private SplitPane createsplitPane(){
         SplitPane splitPanel = new SplitPane();
         splitPanel.setPrefSize(300,1000);
-        splitPanel.getItems().addAll(tabelleBergen.getTableView(),editorBergen);
+        splitPanel.getItems().addAll(tabelleBergen,editorBergen);
         splitPanel.setMinWidth(600);
         splitPanel.setDividerPositions(0.25);
         return splitPanel;

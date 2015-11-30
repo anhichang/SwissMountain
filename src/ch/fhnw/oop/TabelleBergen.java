@@ -1,9 +1,13 @@
 package ch.fhnw.oop;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -11,22 +15,26 @@ import javafx.util.Callback;
  */
 public class TabelleBergen extends TableView<Mountain> {
 
-    private TableView<Mountain> tableView;
+//    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
+
     private ReadMountain model;
 
     public TabelleBergen(ReadMountain readMountain) {
+
         this.model = readMountain;
         System.out.println(readMountain.getListBergen().get(20).getHight() + " TabelleBergen");
         initializeControls();
     }
 
     private void initializeControls() {
-        tableView = initializeResultatTabelle();
+        initializeColTabelle();
+        eventEvent();
     }
 
-    private TableView<Mountain> initializeResultatTabelle() {
+    public void initializeColTabelle() {
+//    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
 
-        tableView = new TableView<>(model.getListBergen());
+        setItems(model.getListBergen());
 
         TableColumn<Mountain, Number> iDCol = new TableColumn<>("ID");
         iDCol.setCellValueFactory(param1 -> param1.getValue().idBergProperty());
@@ -37,14 +45,15 @@ public class TabelleBergen extends TableView<Mountain> {
         TableColumn<Mountain, Number> hoeheCol = new TableColumn<>("Höhe");
         hoeheCol.setCellValueFactory(param -> param.getValue().hightProperty());
 
-        tableView.getColumns().addAll(iDCol, nameCol,hoeheCol);
-        System.out.println(model.getListBergen().get(1).getHight() + " TabelleBergen / resultat");
-
-        return tableView;
-    }
-
-    public TableView<Mountain> getTableView() {
-        return tableView;
-    }
+        getColumns().addAll(iDCol, nameCol, hoeheCol);
 
     }
+    private void eventEvent() {
+        getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
+
+//        model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
+////update der Tabellenselektion und scrolling zur Selektion
+//    };
+    }
+}

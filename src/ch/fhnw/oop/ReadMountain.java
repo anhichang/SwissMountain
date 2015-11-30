@@ -1,5 +1,7 @@
 package ch.fhnw.oop;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ public class ReadMountain {
     private static final String FILE_NAME           = "mountains.csv";
     private static final String TAB = ";";
     private final ObservableList<Mountain> listBergen = FXCollections.observableArrayList();
+    private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
 
     public ReadMountain(){
         listBergen.addAll(readFromFile());
@@ -71,7 +74,22 @@ public class ReadMountain {
         } catch (URISyntaxException e) {
             throw new IllegalArgumentException(e);
         }
+
     }
+
+    public Mountain getSelectedMountain() {
+        return selectedMountain.get();
+    }
+
+    public ObjectProperty<Mountain> selectedMountainProperty() {
+        return selectedMountain;
+    }
+
+    public void setSelectedMountain(Mountain selectedMountain) {
+        this.selectedMountain.set(selectedMountain);
+    }
+
+
 
     public ObservableList<Mountain> getListBergen() {
         return listBergen;
