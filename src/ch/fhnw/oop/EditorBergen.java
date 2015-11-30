@@ -155,6 +155,10 @@ public class EditorBergen extends GridPane {
             //bind von allen Properties auf newSelection
             // z.B. für 'name'
             if(oldSelection != null){
+                nameOben.textProperty().unbindBidirectional(oldSelection.nameProperty());
+                hightOben.textProperty().unbindBidirectional(oldSelection.hightProperty());
+                regionOben.textProperty().unbindBidirectional(oldSelection.regionProperty());
+
                 nameTextfield.textProperty().unbindBidirectional(oldSelection.nameProperty());
                 isolationTextfield.textProperty().unbindBidirectional(oldSelection.isolationProperty());
                 isolationPointfield.textProperty().unbindBidirectional(oldSelection.isolationPointProperty());
@@ -169,6 +173,10 @@ public class EditorBergen extends GridPane {
 
             }
             if(newSelection != null){
+                nameOben.textProperty().bindBidirectional(newSelection.nameProperty());
+                hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
+                regionOben.textProperty().bindBidirectional(newSelection.regionProperty());
+
                 nameTextfield.textProperty().bindBidirectional(newSelection.nameProperty());
                 isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter());
                 isolationPointfield.textProperty().bindBidirectional(newSelection.isolationPointProperty());
