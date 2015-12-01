@@ -1,54 +1,40 @@
 package ch.fhnw.oop;
 
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.util.Callback;
 
 /**
  * Created by ANhi on 11/21/2015.
  */
 public class MountainUI extends BorderPane {
-    private final EditorBergen editorBergen;
-    private final HeaderBergen headerBergen;
-    private final TabelleBergen tabelleBergen;
-//    private final TableView<Mountain> tableView;
+    ReadMountain model;
+    private EditorBergen editorBergen;
+    private HeaderBergen headerBergen;
+    private TabelleBergen tabelleBergen;
+
+//    private final TableView<Mountain> tableView VERBOTEN;
 
     public MountainUI( ReadMountain model) {
-        this.editorBergen = new EditorBergen(model);
-        this.headerBergen = new HeaderBergen();
-        this.tabelleBergen = new TabelleBergen(model);
-//        tableView = new TableView<>(model.getListBergen());
+        this.model = model;
+        initializeControls();
         layoutControls();
         eventEvent();
-        System.out.println(model.getListBergen().get(1).getIdBerg() + " MountainUI");
     }
 
     private void initializeControls() {
-        editorBergen.addEventHandlers();
+        this.editorBergen = new EditorBergen(model);
+        this.headerBergen = new HeaderBergen(model);
+        this.tabelleBergen = new TabelleBergen(model);
     }
 
     private void layoutControls(){
         initializeControls();
         setTop(headerBergen);
         setCenter(createsplitPane());
-        editorBergen.addEventHandlers();
     }
 
     private void eventEvent() {
-        tabelleBergen.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {@Override
-        public void handle(MouseEvent event) {
-//            System.out.println(tableView.getItems().get(2).getHight()+ " EditorBergen");
-//            editorBergen.getNameTextfield().textProperty().bind(tableView.getSelectionModel().getSelectedItem().cantonProperty());
 
-        }
-        });
     }
 
 

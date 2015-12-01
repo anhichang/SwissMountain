@@ -26,15 +26,30 @@ public class ReadMountain {
     private final StringProperty windowTitle        = new SimpleStringProperty("MountainApp");
     private static final String FILE_NAME           = "mountains.csv";
     private static final String TAB = ";";
+//    private static final String FILE_NAME_OUT       = "mountainsout.csv"; wird im selben File gespeichert
+    private static int laufNummer;
+
     private final ObservableList<Mountain> listBergen = FXCollections.observableArrayList();
     private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
 
     public ReadMountain(){
         listBergen.addAll(readFromFile());
+        laufNummer = listBergen.size();
     }
+
+    public void remove(){
+        listBergen.remove(getSelectedMountain());
+    }
+    public void add(){
+        String[] newMountain = new String[]{Integer.toString(laufNummer),"",Integer.toString(0),"","","","",Integer.toString(0),"",Integer.toString(0),"",""};
+        Mountain mountainObject = new Mountain(newMountain);
+        listBergen.add(laufNummer++,mountainObject);
+        setSelectedMountain(mountainObject);
+    }
+
     public void save() {
         try (BufferedWriter writer = Files.newBufferedWriter(getPath(FILE_NAME, true))) {
-            writer.write("ID\tName\tGebiet\tKantone\tkmBis\tDominanz\tkanton\tmBis\tScherten\tName\tKantone\tGebiet\tBilbeschreibung");
+            writer.write("ID\tName\theight\tKantone\tkmBis\tDominanz\tkanton\tmBis\tScherten\tName\tKantone\tGebiet\tBilbeschreibung");
             writer.newLine();
             listBergen.stream().forEach(resultat -> {
                 try {

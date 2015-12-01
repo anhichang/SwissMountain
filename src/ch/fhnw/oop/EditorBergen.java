@@ -1,6 +1,5 @@
 package ch.fhnw.oop;
 
-import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,12 +11,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.util.converter.NumberStringConverter;
 
+import java.util.Locale;
+
 /**
  * Created by ANhi on 11/27/2015.
  */
 public class EditorBergen extends GridPane {
    // private TableView<Mountain> tableView; VERBOTEN
     private ReadMountain model;
+    private static Locale country;
 
     private ImageView image;
     private Label nameOben;
@@ -59,38 +61,39 @@ public class EditorBergen extends GridPane {
     }
 
     private void initializeControls() {
-        nameOben = new Label();
-        hightOben = new Label();
-        regionOben = new Label();
+        country     = new Locale("de", "DE");
+        nameOben    = new Label();
+        hightOben   = new Label();
+        regionOben  = new Label();
 
         Image picture = new Image("0-1.jpg");
         image = new ImageView(picture);
         image.setFitHeight(200);
         image.setFitWidth(200);
 
-        nameLabel = new Label("Name");
-        isolationLabel = new Label("Dominanz");
-        isolationPointLabel = new Label("Km bis");
-        typLabel = new Label("Typ");
-        cantonLabel = new Label("Kantone");
-        captionLabel = new Label("Bildunterschrift");
-        hightLabel = new Label("Höhe");
-        prominanceLabel = new Label("Scharten");
-        prominancePointLabel = new Label("m bis");
-        regionLabel = new Label("Region");
-        rangeLabel = new Label("Gebiet");
+        nameLabel                   = new Label("Name");
+        isolationLabel              = new Label("Dominanz");
+        isolationPointLabel         = new Label("Km bis");
+        typLabel                    = new Label("Typ");
+        cantonLabel                 = new Label("Kantone");
+        captionLabel                = new Label("Bildunterschrift");
+        hightLabel                  = new Label("Höhe");
+        prominanceLabel             = new Label("Scharten");
+        prominancePointLabel        = new Label("m bis");
+        regionLabel                 = new Label("Region");
+        rangeLabel                  = new Label("Gebiet");
 
-        nameTextfield = new TextField();
-        isolationTextfield = new TextField();
-        isolationPointfield = new TextField();
-        typTextfield = new TextField();
-        cantonTextfield = new TextField();
-        captionTextfield = new TextField();
-        hightTextfield = new TextField();
-        prominanceTextfield = new TextField();
-        prominancePointTextfield = new TextField();
-        regionTextfield = new TextField();
-        rangeTextfield = new TextField();
+        nameTextfield               = new TextField();
+        isolationTextfield          = new TextField();
+        isolationPointfield         = new TextField();
+        typTextfield                = new TextField();
+        cantonTextfield             = new TextField();
+        captionTextfield            = new TextField();
+        hightTextfield              = new TextField();
+        prominanceTextfield         = new TextField();
+        prominancePointTextfield    = new TextField();
+        regionTextfield             = new TextField();
+        rangeTextfield              = new TextField();
     }
 
     private void layoutControls() {
@@ -174,22 +177,21 @@ public class EditorBergen extends GridPane {
             }
             if(newSelection != null){
                 nameOben.textProperty().bindBidirectional(newSelection.nameProperty());
-                hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
+                hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter(country));
                 regionOben.textProperty().bindBidirectional(newSelection.regionProperty());
 
                 nameTextfield.textProperty().bindBidirectional(newSelection.nameProperty());
-                isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter());
+                isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter(country));
                 isolationPointfield.textProperty().bindBidirectional(newSelection.isolationPointProperty());
                 typTextfield.textProperty().bindBidirectional(newSelection.typProperty());
                 cantonTextfield.textProperty().bindBidirectional(newSelection.cantonProperty());
                 captionTextfield.textProperty().bindBidirectional(newSelection.captionProperty());
                 hightTextfield.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
-                prominanceTextfield.textProperty().bindBidirectional(newSelection.prominenceProperty(), new NumberStringConverter());
+                prominanceTextfield.textProperty().bindBidirectional(newSelection.prominenceProperty(), new NumberStringConverter(country));
                 prominancePointTextfield.textProperty().bindBidirectional(newSelection.prominencePointProperty());
                 regionTextfield.textProperty().bindBidirectional(newSelection.regionProperty());
                 rangeTextfield.textProperty().bindBidirectional(newSelection.rangeProperty());
             }
-
         });
     }
 

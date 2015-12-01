@@ -1,14 +1,7 @@
 package ch.fhnw.oop;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ListCell;
-import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 
 /**
  * Created by ANhi on 11/27/2015.
@@ -20,9 +13,7 @@ public class TabelleBergen extends TableView<Mountain> {
     private ReadMountain model;
 
     public TabelleBergen(ReadMountain readMountain) {
-
         this.model = readMountain;
-        System.out.println(readMountain.getListBergen().get(20).getHight() + " TabelleBergen");
         initializeControls();
     }
 
@@ -52,7 +43,9 @@ public class TabelleBergen extends TableView<Mountain> {
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
-//        model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
+        model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
+            model.setSelectedMountain(newSelection);
+                });
 ////update der Tabellenselektion und scrolling zur Selektion
 //    };
     }

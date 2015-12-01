@@ -13,7 +13,6 @@ public class MountainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         ReadMountain model = new ReadMountain();
-
         Parent rootPanel = new MountainUI(model);
 
         Scene scene = new Scene(rootPanel);
@@ -27,7 +26,7 @@ public class MountainApp extends Application {
         primaryStage.setWidth(1000);
         primaryStage.setHeight(700);
 
-        primaryStage.setTitle("hh");
+        primaryStage.setTitle(model.getWindowTitle());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

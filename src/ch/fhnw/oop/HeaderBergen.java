@@ -1,6 +1,7 @@
 package ch.fhnw.oop;
 
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,26 +12,43 @@ import javafx.scene.layout.*;
  * Created by ANhi on 11/27/2015.
  */
 public class HeaderBergen extends GridPane {
-    private Button speichern;
-    private Button add;
-    private Button loeschen;
-    private Button zurueck;
-    private Button vorwaerts;
+    private Button saveButton;
+    private Button addButton;
+    private Button deleteButton;
+    private Button backButton;
+    private Button forwardButton;
+    private TextField searchTextField;
 
-    private TextField suche;
+    private ReadMountain model;
 
-    public HeaderBergen(){
+    public HeaderBergen(ReadMountain model){
+        this.model = model;
         initializeControls();
         layoutControls();
+        addBindings();
+
+    }
+
+    private void addBindings() {
+//        saveButton.setOnAction(event ->model.save());		//button.setOnAction(event -> model.addColor());
+        saveButton.setOnAction(
+            event -> model.save()
+        );
+        deleteButton.setOnAction(
+                event -> model.remove()
+        );
+        addButton.setOnAction(
+                event -> model.add()
+        );
     }
 
     private void initializeControls() {
-        speichern   = new Button("sp");
-        add         = new Button("add");
-        loeschen    = new Button("loe");
-        zurueck     = new Button("zur");
-        vorwaerts   = new Button("vor");
-        suche       = new TextField("Suche");
+        saveButton = new Button("Save");
+        addButton = new Button("Add");
+        deleteButton = new Button("Delete");
+        backButton = new Button("Back");
+        forwardButton = new Button("Forward");
+        searchTextField = new TextField("Search");
     }
 
     private void layoutControls(){
@@ -45,17 +63,16 @@ public class HeaderBergen extends GridPane {
         HBox hBoRleft = new HBox();
         HBox hBoxRight = new HBox();
 
-        hBoRleft.getChildren().addAll(speichern,add,loeschen, zurueck, vorwaerts);
+        hBoRleft.getChildren().addAll(saveButton, addButton, deleteButton, backButton, forwardButton);
         hBoRleft.setPadding(new Insets(10, 5, 5, 10));
         hBoRleft.setSpacing(5);
 
-        hBoxRight.getChildren().add(suche);
+        hBoxRight.getChildren().add(searchTextField);
         hBoxRight.setAlignment(Pos.BASELINE_RIGHT);
         hBoxRight.setPadding(new Insets(10, 10, 5, 10));
 
         add(hBoRleft,0,0);
         add(hBoxRight,1,0);
-
     }
 
 

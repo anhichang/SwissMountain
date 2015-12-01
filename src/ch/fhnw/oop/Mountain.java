@@ -53,7 +53,7 @@ public class Mountain {
     }
 
     public String infoAsLine() {
-        return String.join("\t",
+        return String.join(";",
                 Integer.toString(getIdBerg()),
                 getName(),
                 Double.toString(getHight()),
