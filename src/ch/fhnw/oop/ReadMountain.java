@@ -38,13 +38,15 @@ public class ReadMountain {
     }
 
     public void remove(){
+        laufNummer--;
         listBergen.remove(getSelectedMountain());
     }
+
     public void add(){
-        String[] newMountain = new String[]{Integer.toString(laufNummer),"",Integer.toString(0),"","","","",Integer.toString(0),"",Integer.toString(0),"",""};
-        Mountain mountainObject = new Mountain(newMountain);
-        listBergen.add(laufNummer++,mountainObject);
-        setSelectedMountain(mountainObject);
+        Mountain addMountain = new Mountain();
+        addMountain.setIdBerg(laufNummer);
+        listBergen.add(laufNummer++,addMountain);
+        setSelectedMountain(addMountain);
     }
 
     public void save() {

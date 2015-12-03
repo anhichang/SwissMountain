@@ -22,6 +22,8 @@ public class EditorBergen extends GridPane {
     private static Locale country;
 
     private ImageView image;
+    private Image picture;
+
     private Label nameOben;
     private Label hightOben;
     private Label regionOben;
@@ -66,10 +68,11 @@ public class EditorBergen extends GridPane {
         hightOben   = new Label();
         regionOben  = new Label();
 
-        Image picture = new Image("0-1.jpg");
+        picture = new Image("0-1.jpg");
         image = new ImageView(picture);
-        image.setFitHeight(200);
-        image.setFitWidth(200);
+
+        image.setFitHeight(350);
+        image.setFitWidth(350);
 
         nameLabel                   = new Label("Name");
         isolationLabel              = new Label("Dominanz");

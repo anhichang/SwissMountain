@@ -18,6 +18,7 @@ public class Mountain {
     private final DoubleProperty prominence         = new SimpleDoubleProperty();
     private final StringProperty prominencePoint    = new SimpleStringProperty();
     private final StringProperty caption            = new SimpleStringProperty();
+    private final StringProperty bilderBergen       = new SimpleStringProperty();
 
     public Mountain(String[] line){
         setIdBerg(Integer.parseInt(line[0]));
@@ -32,6 +33,10 @@ public class Mountain {
         setProminence(Double.parseDouble(line[9]));
         setProminencePoint(line[10]);
         setCaption(line[11]);
+        setBilderBergen(line[12]);
+    }
+    public Mountain(){
+
     }
 
     @Override
@@ -65,7 +70,8 @@ public class Mountain {
                 getIsolationPoint(),
                 Double.toString(getProminence()),
                 getProminencePoint(),
-                getCaption()
+                getCaption(),
+                getBilderBergen()
         );
     }
 
@@ -214,4 +220,15 @@ public class Mountain {
         this.caption.set(caption);
     }
 
+    public String getBilderBergen() {
+        return bilderBergen.get();
+    }
+
+    public StringProperty bilderBergenProperty() {
+        return bilderBergen;
+    }
+
+    public void setBilderBergen(String bilderBergen) {
+        this.bilderBergen.set(bilderBergen);
+    }
 }

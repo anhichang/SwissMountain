@@ -17,6 +17,7 @@ public class TabelleBergen extends TableView<Mountain> {
         initializeControls();
     }
 
+
     private void initializeControls() {
         initializeColTabelle();
         eventEvent();
@@ -24,19 +25,23 @@ public class TabelleBergen extends TableView<Mountain> {
 
     public void initializeColTabelle() {
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
-
         setItems(model.getListBergen());
 
-        TableColumn<Mountain, Number> iDCol = new TableColumn<>("ID");
+        TableColumn<Mountain, Number> iDCol         = new TableColumn<>("ID");
         iDCol.setCellValueFactory(param1 -> param1.getValue().idBergProperty());
 
-        TableColumn<Mountain, String> nameCol = new TableColumn<>("Name");
+        TableColumn<Mountain, String> nameCol       = new TableColumn<>("Name");
         nameCol.setCellValueFactory(param -> param.getValue().nameProperty());
 
-        TableColumn<Mountain, Number> hoeheCol = new TableColumn<>("Höhe");
+        TableColumn<Mountain, Number> hoeheCol      = new TableColumn<>("Höhe");
         hoeheCol.setCellValueFactory(param -> param.getValue().hightProperty());
 
-        getColumns().addAll(iDCol, nameCol, hoeheCol);
+        TableColumn<Mountain, String> cantonCol     = new TableColumn<>("Kanton");
+        cantonCol.setCellValueFactory(cell -> cell.getValue().cantonProperty());
+
+        cantonCol.setCellFactory(param -> new BergenZelle());
+
+        getColumns().addAll(iDCol, nameCol, hoeheCol, cantonCol);
 
     }
     private void eventEvent() {
@@ -49,4 +54,5 @@ public class TabelleBergen extends TableView<Mountain> {
 ////update der Tabellenselektion und scrolling zur Selektion
 //    };
     }
+
 }
