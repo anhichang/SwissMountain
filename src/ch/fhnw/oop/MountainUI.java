@@ -1,6 +1,8 @@
 package ch.fhnw.oop;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 /**
@@ -14,7 +16,7 @@ public class MountainUI extends BorderPane {
 
 //    private final TableView<Mountain> tableView VERBOTEN;
 
-    public MountainUI( ReadMountain model) {
+    public MountainUI(ReadMountain model) {
         this.model = model;
         initializeControls();
         layoutControls();
@@ -27,7 +29,7 @@ public class MountainUI extends BorderPane {
         this.tabelleBergen = new TabelleBergen(model);
     }
 
-    private void layoutControls(){
+    private void layoutControls() {
         initializeControls();
         setTop(headerBergen);
         setCenter(createsplitPane());
@@ -38,15 +40,16 @@ public class MountainUI extends BorderPane {
     }
 
 
-    private SplitPane createsplitPane(){
+    private SplitPane createsplitPane() {
         SplitPane splitPanel = new SplitPane();
-        splitPanel.setPrefSize(300,1000);
-        splitPanel.getItems().addAll(tabelleBergen,editorBergen);
+        splitPanel.setPrefSize(300, 1000);
+        splitPanel.getItems().addAll(tabelleBergen, editorBergen);
         splitPanel.setMinWidth(600);
         splitPanel.setDividerPositions(0.25);
         return splitPanel;
     }
-    private void addBindings(){
+
+    private void addBindings() {
 
     }
 }

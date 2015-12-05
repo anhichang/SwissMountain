@@ -3,6 +3,7 @@ package ch.fhnw.oop;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +16,7 @@ public class MountainApp extends Application {
         ReadMountain model = new ReadMountain();
         Parent rootPanel = new MountainUI(model);
 
-        Scene scene = new Scene(rootPanel);
+        Scene scene = new Scene(rootPanel, 300, 250, Color.TRANSPARENT);
 
         String stylesheet = getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(stylesheet);
@@ -34,5 +35,6 @@ public class MountainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }

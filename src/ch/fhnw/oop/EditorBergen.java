@@ -70,7 +70,6 @@ public class EditorBergen extends GridPane {
 
         picture = new Image("0-1.jpg");
         image = new ImageView(picture);
-
         image.setFitHeight(350);
         image.setFitWidth(350);
 
@@ -159,7 +158,6 @@ public class EditorBergen extends GridPane {
         model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
             // unbind von allen Properties auf oldSelection
             //bind von allen Properties auf newSelection
-            // z.B. für 'name'
             if(oldSelection != null){
                 nameOben.textProperty().unbindBidirectional(oldSelection.nameProperty());
                 hightOben.textProperty().unbindBidirectional(oldSelection.hightProperty());
@@ -196,6 +194,9 @@ public class EditorBergen extends GridPane {
                 rangeTextfield.textProperty().bindBidirectional(newSelection.rangeProperty());
             }
         });
+    }
+    public void showImage(){
+
     }
 
 

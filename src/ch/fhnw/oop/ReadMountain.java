@@ -6,7 +6,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
+import java.awt.geom.PathIterator;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -25,6 +27,7 @@ public class ReadMountain {
 
     private final StringProperty windowTitle        = new SimpleStringProperty("MountainApp");
     private static final String FILE_NAME           = "mountains.csv";
+    private static final String FILE_NAME1           = "mountainpictures";
     private static final String TAB = ";";
 //    private static final String FILE_NAME_OUT       = "mountainsout.csv"; wird im selben File gespeichert
     private static int laufNummer;
