@@ -31,13 +31,14 @@ public class ReadMountain {
     private static final String TAB = ";";
 //    private static final String FILE_NAME_OUT       = "mountainsout.csv"; wird im selben File gespeichert
     private static int laufNummer;
-
+    private static int laufNummerID;
     private final ObservableList<Mountain> listBergen = FXCollections.observableArrayList();
     private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
 
     public ReadMountain(){
         listBergen.addAll(readFromFile());
         laufNummer = listBergen.size();
+        laufNummerID = listBergen.size();
     }
 
     public void remove(){
@@ -47,9 +48,11 @@ public class ReadMountain {
 
     public void add(){
         Mountain addMountain = new Mountain();
-        addMountain.setIdBerg(laufNummer);
+        addMountain.setIdBerg(laufNummerID++);
         listBergen.add(laufNummer++,addMountain);
         setSelectedMountain(addMountain);
+        
+
     }
 
     public void save() {

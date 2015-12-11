@@ -9,6 +9,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.shape.Circle;
 import javafx.util.converter.NumberStringConverter;
 
 import java.util.Locale;
@@ -21,9 +22,8 @@ public class EditorBergen extends GridPane {
     private ReadMountain model;
     private static Locale country;
 
-    private ImageView image;
-    private Image picture;
-
+    private ImageView imageView;
+    private  Circle glass;
     private Label nameOben;
     private Label hightOben;
     private Label regionOben;
@@ -68,10 +68,14 @@ public class EditorBergen extends GridPane {
         hightOben   = new Label();
         regionOben  = new Label();
 
-        picture = new Image("0-1.jpg");
-        image = new ImageView(picture);
-        image.setFitHeight(350);
-        image.setFitWidth(350);
+        imageView = new ImageView();
+        imageView.setFitHeight(350);
+        imageView.setFitWidth(350);
+//        imageView.setPreserveRatio(true);
+        glass = new Circle(150,150,150);
+        imageView.isSmooth();
+        imageView.setClip(glass);
+
 
         nameLabel                   = new Label("Name");
         isolationLabel              = new Label("Dominanz");
@@ -107,13 +111,11 @@ public class EditorBergen extends GridPane {
         rc.setVgrow(Priority.ALWAYS);
         getRowConstraints().addAll(rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc);
 
-        setPadding(new Insets(5, 10, 10, 10));
-
         add(nameOben,0,0); //colIndex, rowIndex, colSpan, rowSpan
         add(hightOben,0,1);
         add(regionOben,0,2);
 
-        add(image, 2,0, 2,4 );
+        add(imageView, 2,0, 2,4 );
 
         add(nameLabel,0,7);
         add(isolationLabel,0,8);
@@ -140,6 +142,8 @@ public class EditorBergen extends GridPane {
         add(prominancePointTextfield,3,9);
         add(regionTextfield,3,10);
         add(rangeTextfield,3,11);
+
+        setPadding((new Insets(5,5,5,5)));
     }
     private void addBindings() {
     }
@@ -174,8 +178,8 @@ public class EditorBergen extends GridPane {
                 prominancePointTextfield.textProperty().unbindBidirectional(oldSelection.prominencePointProperty());
                 regionTextfield.textProperty().unbindBidirectional(oldSelection.regionProperty());
                 rangeTextfield.textProperty().unbindBidirectional(oldSelection.rangeProperty());
-
             }
+
             if(newSelection != null){
                 nameOben.textProperty().bindBidirectional(newSelection.nameProperty());
                 hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter(country));
@@ -192,12 +196,11 @@ public class EditorBergen extends GridPane {
                 prominancePointTextfield.textProperty().bindBidirectional(newSelection.prominencePointProperty());
                 regionTextfield.textProperty().bindBidirectional(newSelection.regionProperty());
                 rangeTextfield.textProperty().bindBidirectional(newSelection.rangeProperty());
+
+                imageView.setImage(newSelection.getImageObjectProperty());
             }
+
         });
     }
-    public void showImage(){
-
-    }
-
 
 }

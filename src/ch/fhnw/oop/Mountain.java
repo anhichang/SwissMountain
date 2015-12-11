@@ -1,24 +1,28 @@
 package ch.fhnw.oop;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
 
 /**
  * Created by ANhi on 11/21/2015.
  */
 public class Mountain {
-    private final IntegerProperty idBerg            = new SimpleIntegerProperty();
-    private final StringProperty name               = new SimpleStringProperty();
-    private final DoubleProperty hight              = new SimpleDoubleProperty();
-    private final StringProperty typ                = new SimpleStringProperty();
-    private final StringProperty region             = new SimpleStringProperty();
-    private final StringProperty canton             = new SimpleStringProperty();
-    private final StringProperty range              = new SimpleStringProperty();
-    private final DoubleProperty isolation          = new SimpleDoubleProperty();
-    private final StringProperty isolationPoint     = new SimpleStringProperty();
-    private final DoubleProperty prominence         = new SimpleDoubleProperty();
-    private final StringProperty prominencePoint    = new SimpleStringProperty();
-    private final StringProperty caption            = new SimpleStringProperty();
-    private final StringProperty bilderBergen       = new SimpleStringProperty();
+    private final IntegerProperty idBerg                    = new SimpleIntegerProperty();
+    private final StringProperty name                       = new SimpleStringProperty();
+    private final DoubleProperty hight                      = new SimpleDoubleProperty();
+    private final StringProperty typ                        = new SimpleStringProperty();
+    private final StringProperty region                     = new SimpleStringProperty();
+    private final StringProperty canton                     = new SimpleStringProperty();
+    private final StringProperty range                      = new SimpleStringProperty();
+    private final DoubleProperty isolation                  = new SimpleDoubleProperty();
+    private final StringProperty isolationPoint             = new SimpleStringProperty();
+    private final DoubleProperty prominence                 = new SimpleDoubleProperty();
+    private final StringProperty prominencePoint            = new SimpleStringProperty();
+    private final StringProperty caption                    = new SimpleStringProperty();
+    private final ObjectProperty<Image> imageObjectProperty = new SimpleObjectProperty<>();
 
     public Mountain(String[] line){
         setIdBerg(Integer.parseInt(line[0]));
@@ -33,7 +37,7 @@ public class Mountain {
         setProminence(Double.parseDouble(line[9]));
         setProminencePoint(line[10]);
         setCaption(line[11]);
-        setBilderBergen(line[12]);
+        imageObjectProperty.setValue(new Image("mountainpictures/" + getIdBerg()+ "-1.jpg"));
     }
     public Mountain(){
 
@@ -70,8 +74,7 @@ public class Mountain {
                 getIsolationPoint(),
                 Double.toString(getProminence()),
                 getProminencePoint(),
-                getCaption(),
-                getBilderBergen()
+                getCaption()
         );
     }
 
@@ -220,15 +223,16 @@ public class Mountain {
         this.caption.set(caption);
     }
 
-    public String getBilderBergen() {
-        return bilderBergen.get();
+    public Image getImageObjectProperty() {
+        return imageObjectProperty.get();
     }
 
-    public StringProperty bilderBergenProperty() {
-        return bilderBergen;
+    public ObjectProperty<Image> imageObjectPropertyProperty() {
+        return imageObjectProperty;
     }
 
-    public void setBilderBergen(String bilderBergen) {
-        this.bilderBergen.set(bilderBergen);
+    public void setImageObjectProperty(Image imageObjectProperty) {
+        this.imageObjectProperty.set(imageObjectProperty);
     }
+
 }

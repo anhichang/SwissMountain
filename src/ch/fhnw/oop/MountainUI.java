@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
  * Created by ANhi on 11/21/2015.
  */
 public class MountainUI extends BorderPane {
-    ReadMountain model;
+    private ReadMountain model;
     private EditorBergen editorBergen;
     private HeaderBergen headerBergen;
     private TabelleBergen tabelleBergen;
@@ -24,9 +24,9 @@ public class MountainUI extends BorderPane {
     }
 
     private void initializeControls() {
-        this.editorBergen = new EditorBergen(model);
         this.headerBergen = new HeaderBergen(model);
         this.tabelleBergen = new TabelleBergen(model);
+        this.editorBergen = new EditorBergen(model);
     }
 
     private void layoutControls() {
@@ -42,9 +42,8 @@ public class MountainUI extends BorderPane {
 
     private SplitPane createsplitPane() {
         SplitPane splitPanel = new SplitPane();
-        splitPanel.setPrefSize(300, 1000);
+        splitPanel.setPrefSize(400, 200);
         splitPanel.getItems().addAll(tabelleBergen, editorBergen);
-        splitPanel.setMinWidth(600);
         splitPanel.setDividerPositions(0.25);
         return splitPanel;
     }

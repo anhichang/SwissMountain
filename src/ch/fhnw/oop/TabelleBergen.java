@@ -17,7 +17,6 @@ public class TabelleBergen extends TableView<Mountain> {
         initializeControls();
     }
 
-
     private void initializeControls() {
         initializeColTabelle();
         eventEvent();
@@ -48,11 +47,19 @@ public class TabelleBergen extends TableView<Mountain> {
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
-        model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
-            model.setSelectedMountain(newSelection);
-                });
+        model.selectedMountainProperty().addListener(
+                (observableValue, oldSelection, newSelection) -> { model.setSelectedMountain(newSelection);});
+
+//        model.getListBergen().addListener(
+//                new ChangeListener<Mountain>() {
+//                    @Override
+//                    public void changed(ObservableValue<? extends Object> arg0,
+//                                        Object arg1, Object arg2) {
+//                        scrollTo(getItems().size()-1);
+//                    }
+//                });
 ////update der Tabellenselektion und scrolling zur Selektion
-//    };
+
     }
 
 }
