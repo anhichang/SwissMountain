@@ -42,7 +42,7 @@ public class MountainUI extends BorderPane {
         splitPanel.setPrefSize(400, 200);
         splitPanel.getItems().addAll(tabelleBergen, editorBergen);
         splitPanel.setMinSize(800,500);
-        splitPanel.setDividerPositions(0.25);
+        splitPanel.setDividerPositions(0.5);
         return splitPanel;
     }
 

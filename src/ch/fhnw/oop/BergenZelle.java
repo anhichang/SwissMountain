@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
  */
 class BergenZelle extends TableCell<Mountain, String> {
     private static final Map<String, Image> bergenMap = new HashMap<>();
-
     private static final Insets INSETS = new Insets(1, 8, 1, 5);
 
     @Override
@@ -43,7 +42,6 @@ class BergenZelle extends TableCell<Mountain, String> {
             setAlignment(Pos.CENTER);
             setPadding(INSETS);
         }
-
     }
 
 }

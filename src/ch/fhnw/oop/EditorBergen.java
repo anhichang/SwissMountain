@@ -25,7 +25,7 @@ public class EditorBergen extends GridPane {
     private static Locale country;
 
     private ImageView imageView;
-    private  Circle glass;
+    private Circle glass;
     private Label nameOben;
     private Label hightOben;
     private Label regionOben;
@@ -64,6 +64,8 @@ public class EditorBergen extends GridPane {
     }
 
     private void initializeControls() {
+        setStyle("-fx-background-color:#000000;");
+
         country     = new Locale("de", "DE");
         nameOben    = new Label();
         nameOben.getStyleClass().add("labelTitel");

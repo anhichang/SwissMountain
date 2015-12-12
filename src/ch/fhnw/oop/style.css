@@ -2,12 +2,14 @@
     -fx-font-size: 12px;
     -fx-min-width: 50px;
     -fx-max-width: 70px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
     -fx-padding: 8 5 8 5;
     -fx-font-weight: bold;
 }
 .text-field {
     -fx-padding: 4 4 4 4;
+    -fx-text-fill: white;
+    -fx-background-color: #000000;
 }
 
 .grid {
@@ -19,19 +21,21 @@
 
 .button {
     -fx-background-color: red;
+    -fx-text-fill: white;
 }
 
 .labelTitel {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
     -fx-min-width: 300px;
+    -fx-text-fill: white;
 }
 
 .labelKantoneHight{
     -fx-font-size: 12px;
     -fx-min-width: 150px;
     -fx-max-width: 200px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
     -fx-padding: 3 3 3 3;
 }
 .table-view {
@@ -56,5 +60,7 @@
 .split-pane {
     -fx-padding: 1 0 0 0;
 }
-.split-pane > .split-pane-divider {
+
+.grid-Pane {
+    -fx-background-color: #C0C0C0;
 }
