@@ -26,11 +26,11 @@ class BergenZelle extends TableCell<Mountain, String> {
             Image img = bergenMap.get(item);
             if (img == null) {
                 try {
-                    img = new Image(getClass().getResource("wappen_klein/" + item + ".png")
+                    img = new Image(getClass().getResource("res/wappen_klein/" + item + ".png")
                             .toExternalForm(), 18, 18, true, true, true);
                     bergenMap.put(item, img);
                 }catch (NullPointerException e){
-                    img = new Image(getClass().getResource("wappen_klein/" + "noPicture" + ".jpg")
+                    img = new Image(getClass().getResource("res/wappen_klein/" + "noPicture" + ".jpg")
                             .toExternalForm(), 18, 18, true, true, true);
                     bergenMap.put(item, img);
                 }

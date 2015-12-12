@@ -1,9 +1,6 @@
 package ch.fhnw.oop;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 
 /**
@@ -37,7 +34,7 @@ public class Mountain {
         setProminence(Double.parseDouble(line[9]));
         setProminencePoint(line[10]);
         setCaption(line[11]);
-        imageObjectProperty.setValue(new Image("mountainpictures/" + getIdBerg()+ "-1.jpg"));
+        imageObjectProperty.setValue(new Image("ch/fhnw/oop/res/mountainpictures/" + getIdBerg()+ "-1.jpg"));
     }
     public Mountain(){
 

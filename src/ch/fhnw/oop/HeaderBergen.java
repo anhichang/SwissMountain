@@ -38,17 +38,29 @@ public class HeaderBergen extends GridPane {
     }
 
     private void initializeControls() {
-        saveImage       = new ImageView(new Image("headerPicture/saveIcon.png"));
-        addImage        = new ImageView(new Image("headerPicture/addIcon.png"));
-        deleteImage     = new ImageView(new Image("headerPicture/deleteIcon.png"));
-        backImage       = new ImageView(new Image("headerPicture/backIcon.png"));
-        forwardImage    = new ImageView(new Image("headerPicture/forwardIcon.png"));
+        saveImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/saveIcon.png"));
+        addImage        = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/addIcon.png"));
+        deleteImage     = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/deleteIcon.png"));
+        backImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/backIcon.png"));
+        forwardImage    = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/forwardIcon.png"));
 
-        saveButton      = new Button("323",saveImage);
-        addButton       = new Button();
-        deleteButton    = new Button();
-        backButton      = new Button();
-        forwardButton   = new Button();
+        saveImage.setFitWidth(20);
+        saveImage.setFitHeight(20);
+        addImage.setFitWidth(20);
+        addImage.setFitHeight(20);
+        deleteImage.setFitWidth(20);
+        deleteImage.setFitHeight(20);
+        backImage.setFitWidth(20);
+        backImage.setFitHeight(20);
+        forwardImage.setFitWidth(20);
+        forwardImage.setFitHeight(20);
+
+        saveButton      = new Button("",saveImage);
+        addButton       = new Button("",addImage);
+        deleteButton    = new Button("",deleteImage);
+        backButton      = new Button("",backImage);
+        forwardButton   = new Button("",forwardImage);
+
         searchTextField = new TextField("Search");
 
     }

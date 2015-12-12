@@ -10,29 +10,12 @@
 }
 
 .grid {
-    -fx-background-color: red;
+    -fx-background-color: #ff1800;
     -fx-hgap: 10;
     -fx-vgap: 10;
 
 }
 
-.saveButton {
-    -fx-background-image:  url("headerPicture/saveIcon.png");
-    -fx-image-size:20px;
-
-}
-.addButton {
-    -fx-background-image:  url("headerPicture/addIcon.png");
-}
-.deleteButton {
-    -fx-background-image:  url("headerPicture/deleteIcon.png");
-
-}
-.backButton {
-    -fx-background-image:  url("headerPicture/backIcon.png");
-
-}
-.forwardButton {
-    -fx-background-image:  url("headerPicture/forwardIcon.png");
-
+.button {
+    -fx-background-color: red;
 }
