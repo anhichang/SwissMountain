@@ -1,5 +1,7 @@
 package ch.fhnw.oop;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -59,7 +61,6 @@ public class EditorBergen extends GridPane {
         addEventHandlers();
         addValueChangedListeners();
         addBindings();
-
     }
 
     private void initializeControls() {
@@ -150,18 +151,11 @@ public class EditorBergen extends GridPane {
 
     public void addEventHandlers() {
 
-//        observableList.addListener(new ListChangeListener() {
-//            @Override
-//            public void onChanged(ListChangeListener.Change change) {
-//                System.out.println("change!");
-//            }
-//        });
     }
 
     public void addValueChangedListeners(){
         model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
             // unbind von allen Properties auf oldSelection
-            //bind von allen Properties auf newSelection
             if(oldSelection != null){
                 nameOben.textProperty().unbindBidirectional(oldSelection.nameProperty());
                 hightOben.textProperty().unbindBidirectional(oldSelection.hightProperty());
@@ -179,7 +173,7 @@ public class EditorBergen extends GridPane {
                 regionTextfield.textProperty().unbindBidirectional(oldSelection.regionProperty());
                 rangeTextfield.textProperty().unbindBidirectional(oldSelection.rangeProperty());
             }
-
+            //bind von allen Properties auf newSelection
             if(newSelection != null){
                 nameOben.textProperty().bindBidirectional(newSelection.nameProperty());
                 hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter(country));

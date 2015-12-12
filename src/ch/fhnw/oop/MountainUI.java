@@ -1,8 +1,6 @@
 package ch.fhnw.oop;
 
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 /**
@@ -38,7 +36,6 @@ public class MountainUI extends BorderPane {
     private void eventEvent() {
 
     }
-
 
     private SplitPane createsplitPane() {
         SplitPane splitPanel = new SplitPane();

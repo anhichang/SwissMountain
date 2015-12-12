@@ -1,19 +1,8 @@
 package ch.fhnw.oop;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,12 +12,11 @@ import javafx.scene.layout.*;
  * Created by ANhi on 11/27/2015.
  */
 public class HeaderBergen extends GridPane {
-
-    private Image saveImage;
-    private Image addImage;
-    private Image deleteImage;
-    private Image backImage;
-    private Image forwardImage;
+    private ImageView saveImage;
+    private ImageView addImage;
+    private ImageView deleteImage;
+    private ImageView backImage;
+    private ImageView forwardImage;
 
     private Button saveButton;
     private Button addButton;
@@ -36,36 +24,32 @@ public class HeaderBergen extends GridPane {
     private Button backButton;
     private Button forwardButton;
 
-
     private TextField searchTextField;
 
-    private TabelleBergen tabelleBergen;
     private ReadMountain model;
 
     public HeaderBergen(ReadMountain model){
         getStyleClass().add("grid");
         this.model = model;
-        tabelleBergen = new TabelleBergen(model);
         initializeControls();
         layoutControls();
         addBindings();
-        initFilter();
 
     }
 
     private void initializeControls() {
-        saveButton      = new Button();
+        saveImage       = new ImageView(new Image("headerPicture/saveIcon.png"));
+        addImage        = new ImageView(new Image("headerPicture/addIcon.png"));
+        deleteImage     = new ImageView(new Image("headerPicture/deleteIcon.png"));
+        backImage       = new ImageView(new Image("headerPicture/backIcon.png"));
+        forwardImage    = new ImageView(new Image("headerPicture/forwardIcon.png"));
+
+        saveButton      = new Button("323",saveImage);
         addButton       = new Button();
         deleteButton    = new Button();
         backButton      = new Button();
         forwardButton   = new Button();
         searchTextField = new TextField("Search");
-
-        saveButton.getStyleClass().add("saveButton");
-        addButton.getStyleClass().add("addButton");
-        deleteButton.getStyleClass().add("deleteButton");
-        backButton.getStyleClass().add("backButton");
-        forwardButton.getStyleClass().add("forwardButton");
 
     }
 
@@ -94,7 +78,6 @@ public class HeaderBergen extends GridPane {
     }
 
     private void addBindings() {
-//        saveButton.setOnAction(event ->model.save());		//button.setOnAction(event -> model.addColor());
         saveButton.setOnAction(
                 event -> model.save()
         );
@@ -104,30 +87,9 @@ public class HeaderBergen extends GridPane {
         addButton.setOnAction(
                 event -> model.add()
         );
-    }
-
-    private void initFilter() {
-        FilteredList<Mountain> filteredData = new FilteredList<>(model.getListBergen(), p -> true);
-
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(mountain -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (mountain.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    System.out.println(mountain.getName());
-                    return true;
-                }else{
-                    return false;
-                }
-            });
+            model.setFilterString(newValue);
         });
-
-        SortedList<Mountain> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tabelleBergen.comparatorProperty());
-        tabelleBergen.setItems(sortedData);
     }
     }
 

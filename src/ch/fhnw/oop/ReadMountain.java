@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.image.Image;
 
 import java.awt.geom.PathIterator;
@@ -27,13 +29,13 @@ public class ReadMountain {
 
     private final StringProperty windowTitle        = new SimpleStringProperty("MountainApp");
     private static final String FILE_NAME           = "mountains.csv";
-    private static final String FILE_NAME1           = "mountainpictures";
     private static final String TAB = ";";
 //    private static final String FILE_NAME_OUT       = "mountainsout.csv"; wird im selben File gespeichert
     private static int laufNummer;
     private static int laufNummerID;
     private final ObservableList<Mountain> listBergen = FXCollections.observableArrayList();
     private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
+    private final FilteredList<Mountain> filteredData = new  FilteredList<>(listBergen);
 
     public ReadMountain(){
         listBergen.addAll(readFromFile());
@@ -53,6 +55,22 @@ public class ReadMountain {
         setSelectedMountain(addMountain);
         
 
+    }
+
+    public void setFilterString(String newValue){
+        filteredData.setPredicate(mountain -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+
+            if (mountain.getName().toLowerCase().contains(lowerCaseFilter)) {
+                System.out.println(mountain.getName());
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 
     public void save() {
@@ -112,8 +130,6 @@ public class ReadMountain {
         this.selectedMountain.set(selectedMountain);
     }
 
-
-
     public ObservableList<Mountain> getListBergen() {
         return listBergen;
     }
@@ -122,7 +138,7 @@ public class ReadMountain {
         return windowTitle.get();
     }
 
-    public StringProperty windowTitleProperty() {
-        return windowTitle;
+    public FilteredList<Mountain> getFilteredData() {
+        return filteredData;
     }
 }
