@@ -28,15 +28,19 @@ public class TabelleBergen extends TableView<Mountain> {
 
         TableColumn<Mountain, Number> iDCol         = new TableColumn<>("ID");
         iDCol.setCellValueFactory(param1 -> param1.getValue().idBergProperty());
+        iDCol.setMinWidth(30);
 
         TableColumn<Mountain, String> nameCol       = new TableColumn<>("Name");
         nameCol.setCellValueFactory(param -> param.getValue().nameProperty());
+        nameCol.setMinWidth(115);
 
         TableColumn<Mountain, Number> hoeheCol      = new TableColumn<>("Höhe");
         hoeheCol.setCellValueFactory(param -> param.getValue().hightProperty());
+        hoeheCol.setMinWidth(50);
 
         TableColumn<Mountain, String> cantonCol     = new TableColumn<>("Kanton");
         cantonCol.setCellValueFactory(cell -> cell.getValue().cantonProperty());
+        cantonCol.setMinWidth(55);
 
         cantonCol.setCellFactory(param -> new BergenZelle());
 

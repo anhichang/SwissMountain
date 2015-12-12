@@ -66,8 +66,11 @@ public class EditorBergen extends GridPane {
     private void initializeControls() {
         country     = new Locale("de", "DE");
         nameOben    = new Label();
+        nameOben.getStyleClass().add("labelTitel");
         hightOben   = new Label();
+        hightOben.getStyleClass().add("labelKantoneHight");
         regionOben  = new Label();
+        regionOben.getStyleClass().add("labelKantoneHight");
 
         imageView = new ImageView();
         imageView.setFitHeight(350);
@@ -110,39 +113,39 @@ public class EditorBergen extends GridPane {
 
         RowConstraints rc = new RowConstraints();
         rc.setVgrow(Priority.ALWAYS);
-        getRowConstraints().addAll(rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc);
+        getRowConstraints().addAll(rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc,rc);
 
-        add(nameOben,0,0); //colIndex, rowIndex, colSpan, rowSpan
-        add(hightOben,0,1);
-        add(regionOben,0,2);
+        add(nameOben,0,0,3,1); //colIndex, rowIndex, colSpan, rowSpan
+        add(hightOben,0,1,3,1);
+        add(regionOben,0,2,3,1);
 
-        add(imageView, 2,0, 2,4 );
+        add(imageView, 2,3,3,3);
 
-        add(nameLabel,0,7);
-        add(isolationLabel,0,8);
-        add(isolationPointLabel,0,9);
-        add(typLabel,0,10);
-        add(cantonLabel,0,11);
-        add(captionLabel,0,12);
+        add(nameLabel,0,10);
+        add(isolationLabel,0,11);
+        add(isolationPointLabel,0,12);
+        add(typLabel,0,13);
+        add(cantonLabel,0,14);
+        add(captionLabel,0,15);
 
-        add(nameTextfield,1,7);
-        add(isolationTextfield,1,8);
-        add(isolationPointfield,1,9);
-        add(typTextfield,1,10);
-        add(cantonTextfield,1,11);
-        add(captionTextfield,1,12,4,1);
+        add(nameTextfield,1,10);
+        add(isolationTextfield,1,11);
+        add(isolationPointfield,1,12);
+        add(typTextfield,1,13);
+        add(cantonTextfield,1,14);
+        add(captionTextfield,1,15,4,1);
 
-        add(hightLabel,2,7);
-        add(prominanceLabel,2,8);
-        add(prominancePointLabel,2,9);
-        add(regionLabel,2,10);
-        add(rangeLabel,2,11);
+        add(hightLabel,2,10);
+        add(prominanceLabel,2,11);
+        add(prominancePointLabel,2,12);
+        add(regionLabel,2,13);
+        add(rangeLabel,2,14);
 
-        add(hightTextfield,3,7);
-        add(prominanceTextfield,3,8);
-        add(prominancePointTextfield,3,9);
-        add(regionTextfield,3,10);
-        add(rangeTextfield,3,11);
+        add(hightTextfield,3,10);
+        add(prominanceTextfield,3,11);
+        add(prominancePointTextfield,3,12);
+        add(regionTextfield,3,13);
+        add(rangeTextfield,3,14);
 
         setPadding((new Insets(5,5,5,5)));
     }

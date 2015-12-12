@@ -31,11 +31,11 @@ public class MountainApp extends Application {
         String stylesheet = getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(stylesheet);
 
-        primaryStage.setMinWidth(1500);
-        primaryStage.setMinHeight(900);
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(800);
 
-        primaryStage.setWidth(1000);
-        primaryStage.setHeight(700);
+        primaryStage.setWidth(1100);
+        primaryStage.setHeight(800);
 
         primaryStage.setTitle(model.getWindowTitle());
         primaryStage.setScene(scene);
