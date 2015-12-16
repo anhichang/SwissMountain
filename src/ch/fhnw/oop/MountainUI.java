@@ -8,9 +8,9 @@ import javafx.scene.layout.*;
  */
 public class MountainUI extends BorderPane {
     private ReadMountain model;
-    private EditorBergen editorBergen;
-    private HeaderBergen headerBergen;
-    private TabelleBergen tabelleBergen;
+    private EditorMountain editorMountain;
+    private HeaderMountain headerMountain;
+    private TableMountain tableMountain;
 
 //    private final TableView<Mountain> tableView VERBOTEN;
 
@@ -22,14 +22,14 @@ public class MountainUI extends BorderPane {
     }
 
     private void initializeControls() {
-        this.headerBergen = new HeaderBergen(model);
-        this.tabelleBergen = new TabelleBergen(model);
-        this.editorBergen = new EditorBergen(model);
+        this.headerMountain = new HeaderMountain(model);
+        this.tableMountain = new TableMountain(model);
+        this.editorMountain = new EditorMountain(model);
     }
 
     private void layoutControls() {
         initializeControls();
-        setTop(headerBergen);
+        setTop(headerMountain);
         setCenter(createsplitPane());
     }
 
@@ -40,7 +40,7 @@ public class MountainUI extends BorderPane {
     private SplitPane createsplitPane() {
         SplitPane splitPanel = new SplitPane();
         splitPanel.setPrefSize(400, 200);
-        splitPanel.getItems().addAll(tabelleBergen, editorBergen);
+        splitPanel.getItems().addAll(tableMountain, editorMountain);
         splitPanel.setMinSize(800,500);
         splitPanel.setDividerPositions(0.5);
         return splitPanel;

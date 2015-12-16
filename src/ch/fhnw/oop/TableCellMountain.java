@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 /**
  * Created by ANhi on 12/3/2015.
  */
-class BergenZelle extends TableCell<Mountain, String> {
+class TableCellMountain extends TableCell<Mountain, String> {
     private static final Map<String, Image> bergenMap = new HashMap<>();
     private static final Insets INSETS = new Insets(1, 8, 1, 5);
 

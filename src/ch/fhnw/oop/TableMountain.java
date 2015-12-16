@@ -6,13 +6,13 @@ import javafx.scene.control.TableView;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class TabelleBergen extends TableView<Mountain> {
+public class TableMountain extends TableView<Mountain> {
 
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
 
     private ReadMountain model;
 
-    public TabelleBergen(ReadMountain readMountain) {
+    public TableMountain(ReadMountain readMountain) {
         this.model = readMountain;
         initializeControls();
     }
@@ -42,7 +42,7 @@ public class TabelleBergen extends TableView<Mountain> {
         cantonCol.setCellValueFactory(cell -> cell.getValue().cantonProperty());
         cantonCol.setMinWidth(55);
 
-        cantonCol.setCellFactory(param -> new BergenZelle());
+        cantonCol.setCellFactory(param -> new TableCellMountain());
 
         getColumns().addAll(iDCol, nameCol, hoeheCol, cantonCol);
 

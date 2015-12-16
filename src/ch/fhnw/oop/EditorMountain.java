@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class EditorBergen extends GridPane {
+public class EditorMountain extends GridPane {
     // private TableView<Mountain> tableView; VERBOTEN
     private ReadMountain model;
     private static Locale country;
@@ -62,7 +62,7 @@ public class EditorBergen extends GridPane {
     private TextField rangeTextfield;
 
 
-    public EditorBergen(ReadMountain model) {
+    public EditorMountain(ReadMountain model) {
         this.model = model;
         initializeControls();
         layoutControls();

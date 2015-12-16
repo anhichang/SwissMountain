@@ -6,16 +6,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-import java.awt.*;
-
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class HeaderBergen extends GridPane {
+public class HeaderMountain extends GridPane {
 
     private ImageView saveImage;
     private ImageView addImage;
@@ -36,12 +35,21 @@ public class HeaderBergen extends GridPane {
     private Button blackStyleButton;
     private Button whiteStyleButton;
 
-    private String styleSheetWhite = getClass().getResource("styleWhite.css").toExternalForm();
-    private String styleSheetBlack = getClass().getResource("styleBlack.css").toExternalForm();
+    final Tooltip tooltipSave       = new Tooltip("Save");
+    final Tooltip tooltipAdd        = new Tooltip("Add");
+    final Tooltip tooltipDelete     = new Tooltip("Delete");
+    final Tooltip tooltipUndo       = new Tooltip("Undo");
+    final Tooltip tooltipRedo       = new Tooltip("Redo");
+
+    final Tooltip tooltipBlack      = new Tooltip("Change to black style");
+    final Tooltip tooltipWhite      = new Tooltip("Change to white style");
+
+    private String styleSheetWhite  = getClass().getResource("styleWhite.css").toExternalForm();
+    private String styleSheetBlack  = getClass().getResource("styleBlack.css").toExternalForm();
 
     private ReadMountain model;
 
-    public HeaderBergen(ReadMountain model) {
+    public HeaderMountain(ReadMountain model) {
         getStyleClass().add("grid");
         this.model = model;
 
@@ -59,7 +67,7 @@ public class HeaderBergen extends GridPane {
         backImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/backIcon.png"));
         forwardImage    = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/forwardIcon.png"));
 
-        whiteStyle        = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/whiteStyle.png"));
+        whiteStyle      = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/whiteStyle.png"));
         blackStyle      = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/blackStyle.png"));
 
         saveImage.setFitWidth(20);
@@ -87,6 +95,14 @@ public class HeaderBergen extends GridPane {
         blackStyleButton    = new Button("",blackStyle);
         whiteStyleButton    = new Button("",whiteStyle);
 
+        saveButton.setTooltip(tooltipSave);
+        addButton.setTooltip(tooltipAdd);
+        deleteButton.setTooltip(tooltipDelete);
+        undoButton.setTooltip(tooltipUndo);
+        redoButton.setTooltip(tooltipRedo);
+
+        blackStyleButton.setTooltip(tooltipBlack);
+        whiteStyleButton.setTooltip(tooltipWhite);
     }
 
     private void layoutControls() {
