@@ -1,0 +1,74 @@
+.label {
+    -fx-font-size: 12px;
+    -fx-min-width: 100px;
+    -fx-max-width: 120px;
+    -fx-text-fill: #000000;
+    -fx-padding: 8 5 8 5;
+    -fx-font-weight: bold;
+}
+.text-field {
+    -fx-padding: 4 4 4 4;
+    -fx-text-fill: #000000;
+    -fx-background-color: #f9f9f9;
+}
+
+.grid {
+    -fx-background-color: #ff1800;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+.button {
+    -fx-background-color: #ff1800;
+    -fx-text-fill: #000000;
+}
+.button:hover{
+    -fx-background-color: linear-gradient(#c61800, #c61800);
+}
+.labelTitel {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-min-width: 300px;
+    -fx-text-fill: #000000;
+}
+
+.labelKantoneHight{
+    -fx-font-size: 12px;
+    -fx-min-width: 150px;
+    -fx-max-width: 200px;
+    -fx-text-fill: #000000;
+    -fx-padding: 3 3 3 3;
+}
+.table-view {
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #000000;
+    -fx-alignment: center-left;
+    -fx-opacity: 3;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+    -fx-padding: 0 5 0 0;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+.grid-Pane {
+    -fx-background-color: #f9f9f9;
+}
+.editorBergen{
+    -fx-background-color: #ffffff;
+}

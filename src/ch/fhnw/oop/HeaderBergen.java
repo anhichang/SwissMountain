@@ -1,5 +1,7 @@
 package ch.fhnw.oop;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,31 +10,44 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.awt.*;
+
 /**
  * Created by ANhi on 11/27/2015.
  */
 public class HeaderBergen extends GridPane {
+
     private ImageView saveImage;
     private ImageView addImage;
     private ImageView deleteImage;
     private ImageView backImage;
     private ImageView forwardImage;
 
+    private ImageView whiteStyle;
+    private ImageView blackStyle;
+
     private Button saveButton;
     private Button addButton;
     private Button deleteButton;
-    private Button backButton;
-    private Button forwardButton;
+    private Button undoButton;
+    private Button redoButton;
 
     private TextField searchTextField;
+    private Button blackStyleButton;
+    private Button whiteStyleButton;
+
+    private String styleSheetWhite = getClass().getResource("styleWhite.css").toExternalForm();
+    private String styleSheetBlack = getClass().getResource("styleBlack.css").toExternalForm();
 
     private ReadMountain model;
 
-    public HeaderBergen(ReadMountain model){
+    public HeaderBergen(ReadMountain model) {
         getStyleClass().add("grid");
         this.model = model;
+
         initializeControls();
         layoutControls();
+        addEventHandlers();
         addBindings();
 
     }
@@ -44,6 +59,9 @@ public class HeaderBergen extends GridPane {
         backImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/backIcon.png"));
         forwardImage    = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/forwardIcon.png"));
 
+        whiteStyle        = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/whiteStyle.png"));
+        blackStyle      = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/blackStyle.png"));
+
         saveImage.setFitWidth(20);
         saveImage.setFitHeight(20);
         addImage.setFitWidth(20);
@@ -54,54 +72,86 @@ public class HeaderBergen extends GridPane {
         backImage.setFitHeight(20);
         forwardImage.setFitWidth(20);
         forwardImage.setFitHeight(20);
+        whiteStyle.setFitWidth(20);
+        whiteStyle.setFitHeight(20);
+        blackStyle.setFitWidth(20);
+        blackStyle.setFitHeight(20);
 
-        saveButton      = new Button("",saveImage);
-        addButton       = new Button("",addImage);
-        deleteButton    = new Button("",deleteImage);
-        backButton      = new Button("",backImage);
-        forwardButton   = new Button("",forwardImage);
+        saveButton          = new Button("", saveImage);
+        addButton           = new Button("", addImage);
+        deleteButton        = new Button("", deleteImage);
+        undoButton          = new Button("", backImage);
+        redoButton          = new Button("", forwardImage);
 
-        searchTextField = new TextField("Search");
+        searchTextField     = new TextField("Search");
+        blackStyleButton    = new Button("",blackStyle);
+        whiteStyleButton    = new Button("",whiteStyle);
 
     }
 
-    private void layoutControls(){
-        ColumnConstraints cc = new ColumnConstraints();
+    private void layoutControls() {
+        ColumnConstraints cc                    = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
-        getColumnConstraints().addAll(cc,cc);
+        getColumnConstraints().addAll(cc, cc);
 
-        RowConstraints rc = new RowConstraints();
+        RowConstraints rc                       = new RowConstraints();
         rc.setVgrow(Priority.ALWAYS);
         getRowConstraints().addAll(rc);
 
-        HBox hBoRleft = new HBox();
-        HBox hBoxRight = new HBox();
+        HBox hBoRleft                           = new HBox();
+        HBox hBoxRight                          = new HBox();
 
-        hBoRleft.getChildren().addAll(saveButton, addButton, deleteButton, backButton, forwardButton);
+        hBoRleft.getChildren().addAll(saveButton, addButton, deleteButton, undoButton, redoButton);
         hBoRleft.setPadding(new Insets(10, 5, 5, 10));
         hBoRleft.setSpacing(10);
 
-        hBoxRight.getChildren().add(searchTextField);
+        hBoxRight.getChildren().addAll(blackStyleButton, whiteStyleButton, searchTextField);
         hBoxRight.setAlignment(Pos.BASELINE_RIGHT);
         hBoxRight.setPadding(new Insets(10, 10, 5, 10));
 
-        add(hBoRleft,0,0);
-        add(hBoxRight,1,0);
+        add(hBoRleft, 0, 0);
+        add(hBoxRight, 1, 0);
+
     }
 
     private void addBindings() {
         saveButton.setOnAction(
                 event -> model.save()
         );
+
         deleteButton.setOnAction(
                 event -> model.remove()
         );
+
         addButton.setOnAction(
                 event -> model.add()
         );
+
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             model.setFilterString(newValue);
         });
-    }
+        undoButton.disableProperty().bind(model.undoDisabledProperty());
+        redoButton.disableProperty().bind(model.redoDisabledProperty());
     }
 
+    public void addEventHandlers() {
+        undoButton.setOnAction(event -> model.undo());
+        redoButton.setOnAction(event -> model.redo());
+
+        blackStyleButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                getScene().getStylesheets().remove(styleSheetWhite);
+                getScene().getStylesheets().add(styleSheetBlack);
+            }
+        });
+
+        whiteStyleButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                getScene().getStylesheets().remove(styleSheetBlack);
+                getScene().getStylesheets().add(styleSheetWhite);
+            }
+        });
+    }
+}

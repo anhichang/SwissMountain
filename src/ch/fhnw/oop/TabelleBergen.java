@@ -48,12 +48,21 @@ public class TabelleBergen extends TableView<Mountain> {
 
         setItems(model.getFilteredData());
     }
+
     private void eventEvent() {
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
         model.selectedMountainProperty().addListener(
-                (observableValue, oldSelection, newSelection) -> { model.setSelectedMountain(newSelection);});
+                (observableValue, oldSelection, newSelection) -> {
+                    model.setSelectedMountain(newSelection);
+                });
+        model.selectedMountainProperty().addListener(
+                (observableValue, oldSelection, newSelection) -> {
+                    model.setSelectedMountainId(newSelection.getIdBerg());
+                }
+        );
     }
 
-    }
+
+}

@@ -19,6 +19,8 @@ import javafx.stage.StageStyle;
  * Created by ANhi on 11/21/2015.
  */
 public class MountainApp extends Application {
+    String styleSheet = new String();
+    static Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -26,10 +28,10 @@ public class MountainApp extends Application {
         ReadMountain model = new ReadMountain();
         Parent rootPanel = new MountainUI(model);
 
-        Scene scene = new Scene(rootPanel, 300, 250);
+        scene = new Scene(rootPanel, 300, 250);
 
-        String stylesheet = getClass().getResource("style.css").toExternalForm();
-        scene.getStylesheets().add(stylesheet);
+        styleSheet = getClass().getResource("styleBlack.css").toExternalForm();
+        scene.getStylesheets().add(styleSheet);
 
         primaryStage.setMinWidth(1100);
         primaryStage.setMinHeight(800);
@@ -44,6 +46,21 @@ public class MountainApp extends Application {
         primaryStage.show();
     }
 
+    public String getStyleSheet() {
+        return styleSheet;
+    }
+
+    public void setStyleSheet(String styleSheet) {
+        this.styleSheet = styleSheet;
+    }
+
+    public static Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 
 
     public static void main(String[] args) {
