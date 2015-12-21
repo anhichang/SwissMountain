@@ -34,7 +34,7 @@ public class ReadMountain {
     private final ObservableList<Mountain> listBergen       = FXCollections.observableArrayList();
     private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
 
-    private final FilteredList<Mountain> filteredData       = new FilteredList<>(listBergen);
+    private final FilteredList<Mountain> filteredData       = new FilteredList<>(listBergen);  // kann nur filtern
 
     private final ObservableList<Command> undoStack         = FXCollections.observableArrayList();
     private final ObservableList<Command> redoStack         = FXCollections.observableArrayList();
@@ -70,8 +70,12 @@ public class ReadMountain {
                     }
                 }
         );
-
-        // selection changes are undoable
+//        if(selectedMountain.get() == null){
+//            setSelectedMountainId(0);
+//        }else {
+//            setSelectedMountainId(selectedMountain.getValue().getIdBerg());
+//            // selection changes are undoable
+//        }
         selectedMountainIdProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
@@ -193,7 +197,6 @@ public class ReadMountain {
             String lowerCaseFilter = newValue.toLowerCase();
 
             if (mountain.getName().toLowerCase().contains(lowerCaseFilter)) {
-                System.out.println(mountain.getName());
                 return true;
             } else {
                 return false;
@@ -271,6 +274,7 @@ public class ReadMountain {
     }
 
     public FilteredList<Mountain> getFilteredData() {
+
         return filteredData;
     }
 

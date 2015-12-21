@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class EditorMountain extends GridPane {
+public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
     // private TableView<Mountain> tableView; VERBOTEN
     private ReadMountain model;
     private static Locale country;
@@ -64,15 +64,24 @@ public class EditorMountain extends GridPane {
 
     public EditorMountain(ReadMountain model) {
         this.model = model;
-        initializeControls();
-        layoutControls();
-        addEventHandlers();
-        addValueChangedListeners();
-        addBindings();
+        init();
 //        mapInitialized();
     }
 
-    private void initializeControls() {
+    public void init() {
+        initializeControls();
+        layoutControls();
+        addEventHandlers();
+        addBindings();
+        addValueChangedListeners();
+    }
+
+    @Override
+    public ReadMountain getPresentationModel() {
+        return model;
+    }
+
+    public void initializeControls() {
         getStyleClass().add("editorBergen");
 
 //        mapOptions = new MapOptions();
@@ -120,7 +129,7 @@ public class EditorMountain extends GridPane {
         rangeTextfield              = new TextField();
     }
 
-    private void layoutControls() {
+    public void layoutControls() {
         ColumnConstraints cc        = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
         getColumnConstraints().addAll(cc, cc, cc, cc);
@@ -164,7 +173,7 @@ public class EditorMountain extends GridPane {
         setPadding((new Insets(5, 5, 5, 5)));
     }
 
-    private void addBindings() {
+    public void addBindings() {
 
     }
 

@@ -1,5 +1,6 @@
 package ch.fhnw.oop;
 
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -9,7 +10,6 @@ import javafx.scene.control.TableView;
 public class TableMountain extends TableView<Mountain> {
 
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
-
     private ReadMountain model;
 
     public TableMountain(ReadMountain readMountain) {
@@ -24,7 +24,7 @@ public class TableMountain extends TableView<Mountain> {
 
     public void initializeColTabelle() {
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
-        setItems(model.getListBergen());
+//        setItems(model.getListBergen()); braucht es nicht mehr
 
         TableColumn<Mountain, Number> iDCol         = new TableColumn<>("ID");
         iDCol.setCellValueFactory(param1 -> param1.getValue().idBergProperty());
@@ -46,23 +46,28 @@ public class TableMountain extends TableView<Mountain> {
 
         getColumns().addAll(iDCol, nameCol, hoeheCol, cantonCol);
 
-        setItems(model.getFilteredData());
+        SortedList<Mountain> sortedList = new SortedList<>(model.getFilteredData());
+        sortedList.comparatorProperty().bind(comparatorProperty());
+
+        setItems(sortedList);
     }
 
     private void eventEvent() {
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
-        model.selectedMountainProperty().addListener(
+//        model.selectedMountainProperty().addListener(
+//                (observableValue, oldSelection, newSelection) -> {
+//                    model.setSelectedMountain(newSelection);
+//                });
+//
+        getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldSelection, newSelection) -> {
-                    model.setSelectedMountain(newSelection);
+                    try {
+                        model.setSelectedMountainId(newSelection.idBergProperty().getValue());
+                    }catch(NullPointerException e){
+                        model.setSelectedMountainId(0);
+                    }
                 });
-        model.selectedMountainProperty().addListener(
-                (observableValue, oldSelection, newSelection) -> {
-                    model.setSelectedMountainId(newSelection.getIdBerg());
-                }
-        );
     }
-
-
 }

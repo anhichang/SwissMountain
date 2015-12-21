@@ -14,7 +14,7 @@ import javafx.scene.layout.*;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class HeaderMountain extends GridPane {
+public class HeaderMountain extends GridPane implements ViewMixin<Mountain>{
 
     private ImageView saveImage;
     private ImageView addImage;
@@ -52,15 +52,21 @@ public class HeaderMountain extends GridPane {
     public HeaderMountain(ReadMountain model) {
         getStyleClass().add("grid");
         this.model = model;
-
+        init();
+    }
+    public void init(){
         initializeControls();
         layoutControls();
         addEventHandlers();
         addBindings();
-
     }
 
-    private void initializeControls() {
+    @Override
+    public Mountain getPresentationModel() {
+        return null;
+    }
+
+    public void initializeControls() {
         saveImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/saveIcon.png"));
         addImage        = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/addIcon.png"));
         deleteImage     = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/deleteIcon.png"));
@@ -105,7 +111,7 @@ public class HeaderMountain extends GridPane {
         whiteStyleButton.setTooltip(tooltipWhite);
     }
 
-    private void layoutControls() {
+    public void layoutControls() {
         ColumnConstraints cc                    = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
         getColumnConstraints().addAll(cc, cc);
@@ -130,7 +136,7 @@ public class HeaderMountain extends GridPane {
 
     }
 
-    private void addBindings() {
+    public void addBindings() {
         saveButton.setOnAction(
                 event -> model.save()
         );
