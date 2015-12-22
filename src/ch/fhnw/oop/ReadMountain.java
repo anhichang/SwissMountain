@@ -27,8 +27,8 @@ public class ReadMountain {
     private static final String TAB = ";";
     private static int laufNummer;
     private static int laufNummerID;
-    //    private static final String FILE_NAME_OUT             = "mountainsout.csv"; wird im selben File gespeichert
-    private final StringProperty windowTitle                = new SimpleStringProperty("MountainApp");
+
+    private final StringProperty windowTitle                = new SimpleStringProperty("Mountain CH");
     private static final String FILE_NAME                   = "mountains.csv";
 
     private final ObservableList<Mountain> listBergen       = FXCollections.observableArrayList();
@@ -70,12 +70,7 @@ public class ReadMountain {
                     }
                 }
         );
-//        if(selectedMountain.get() == null){
-//            setSelectedMountainId(0);
-//        }else {
-//            setSelectedMountainId(selectedMountain.getValue().getIdBerg());
-//            // selection changes are undoable
-//        }
+
         selectedMountainIdProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
@@ -177,14 +172,17 @@ public class ReadMountain {
     }
 
     public void remove() {
+
         laufNummer--;
         listBergen.remove(getSelectedMountain());
     }
 
     public void add() {
+        redoStack.clear();
         Mountain addMountain = new Mountain();
         addMountain.setIdBerg(laufNummerID++);
-        listBergen.add(laufNummer++, addMountain);
+        addMountain.setName("");
+        listBergen.add(laufNummer, addMountain);
         setSelectedMountain(addMountain);
 
     }

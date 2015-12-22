@@ -25,10 +25,6 @@ import java.util.Locale;
 public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
     // private TableView<Mountain> tableView; VERBOTEN
     private ReadMountain model;
-    private static Locale country;
-//    private static MapOptions mapOptions;
-//    private static GoogleMapView mapView;
-//    private static GoogleMap map;
 
     private ImageView imageView;
 
@@ -65,7 +61,6 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
     public EditorMountain(ReadMountain model) {
         this.model = model;
         init();
-//        mapInitialized();
     }
 
     public void init() {
@@ -228,50 +223,25 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
             public void handle(MouseEvent event) {
                 BorderPane borderPane = new BorderPane();
                 ImageView imageView = new ImageView();
-                Image image = model.getSelectedMountain().imageObjectPropertyProperty().get();
-                imageView.setImage(image);
-                imageView.setStyle("-fx-background-color: BLACK");
-                imageView.setPreserveRatio(true);
-                imageView.setSmooth(true);
-                imageView.setCache(true);
-                borderPane.setCenter(imageView);
-                borderPane.setStyle("-fx-background-color: BLACK");
-                Stage newStage = new Stage();
-                Scene scene = new Scene(borderPane, Color.BLACK);
-                newStage.setScene(scene);
-                newStage.show();
+                if(model.getSelectedMountain() != null) {
+                    Image image = model.getSelectedMountain().imageObjectPropertyProperty().get();
+                    imageView.setImage(image);
+                    imageView.setStyle("-fx-background-color: BLACK");
+                    imageView.setPreserveRatio(true);
+                    imageView.setSmooth(true);
+                    imageView.setCache(true);
+                    borderPane.setCenter(imageView);
+                    borderPane.setStyle("-fx-background-color: BLACK");
+                    Stage newStage = new Stage();
+                    Scene scene = new Scene(borderPane, Color.BLACK);
+                    newStage.setScene(scene);
+                    newStage.show();
+                }
             }
         });
 
 
     }
-
-//    public void mapInitialized() {
-//        //Set the initial properties of the map.
-//        mapOptions.center(new LatLong(47.6097, -122.3331))
-//                .mapType(MapTypeIdEnum.TERRAIN)
-//                .overviewMapControl(false)
-//                .panControl(false)
-//                .rotateControl(false)
-//                .scaleControl(false)
-//                .streetViewControl(false)
-//                .zoomControl(false)
-//                .zoom(12);
-//
-//        map = mapView.createMap(mapOptions);
-//
-//        //Add a marker to the map
-//        MarkerOptions markerOptions = new MarkerOptions();
-//
-//        markerOptions.position( new LatLong(47.6, -122.3) )
-//                .visible(Boolean.TRUE)
-//                .title("My Marker");
-//
-//        Marker marker = new Marker( markerOptions );
-//
-//        map.addMarker(marker);
-//
-//    }
 
     public void addValueChangedListeners(){
         model.selectedMountainProperty().addListener((observableValue, oldSelection, newSelection) -> {
@@ -297,17 +267,17 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
             //bind von allen Properties auf newSelection
             if(newSelection != null){
                 nameOben.textProperty().bindBidirectional(newSelection.nameProperty());
-                hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter(country));
+                hightOben.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
                 regionOben.textProperty().bindBidirectional(newSelection.regionProperty());
 
                 nameTextfield.textProperty().bindBidirectional(newSelection.nameProperty());
-                isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter(country));
+                isolationTextfield.textProperty().bindBidirectional(newSelection.isolationProperty(), new NumberStringConverter());
                 isolationPointfield.textProperty().bindBidirectional(newSelection.isolationPointProperty());
                 typTextfield.textProperty().bindBidirectional(newSelection.typProperty());
                 cantonTextfield.textProperty().bindBidirectional(newSelection.cantonProperty());
                 captionTextfield.textProperty().bindBidirectional(newSelection.captionProperty());
                 hightTextfield.textProperty().bindBidirectional(newSelection.hightProperty(), new NumberStringConverter());
-                prominanceTextfield.textProperty().bindBidirectional(newSelection.prominenceProperty(), new NumberStringConverter(country));
+                prominanceTextfield.textProperty().bindBidirectional(newSelection.prominenceProperty(), new NumberStringConverter());
                 prominancePointTextfield.textProperty().bindBidirectional(newSelection.prominencePointProperty());
                 regionTextfield.textProperty().bindBidirectional(newSelection.regionProperty());
                 rangeTextfield.textProperty().bindBidirectional(newSelection.rangeProperty());

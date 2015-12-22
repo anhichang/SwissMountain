@@ -63,11 +63,12 @@ public class TableMountain extends TableView<Mountain> {
 //
         getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldSelection, newSelection) -> {
-                    try {
-                        model.setSelectedMountainId(newSelection.idBergProperty().getValue());
-                    }catch(NullPointerException e){
-                        model.setSelectedMountainId(0);
+                    if(newSelection == null) {
+                        model.setSelectedMountainId(oldSelection.getIdBerg());
+                    }else{
+                        model.setSelectedMountainId(newSelection.getIdBerg());
                     }
                 });
+
     }
 }

@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
  * Created by ANhi on 11/21/2015.
  */
 public class MountainApp extends Application {
-    String styleSheet = new String();
+    String styleSheet;
     static Scene scene;
 
     @Override
@@ -36,23 +36,6 @@ public class MountainApp extends Application {
 
         primaryStage.show();
     }
-
-    public String getStyleSheet() {
-        return styleSheet;
-    }
-
-    public void setStyleSheet(String styleSheet) {
-        this.styleSheet = styleSheet;
-    }
-
-    public static Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
 
     public static void main(String[] args) {
         launch(args);
