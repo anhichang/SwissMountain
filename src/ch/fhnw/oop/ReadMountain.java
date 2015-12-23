@@ -44,7 +44,7 @@ public class ReadMountain {
 
     private final Mountain mountainProxy                    = new Mountain();
 
-    private final IntegerProperty selectedMountainId        = new SimpleIntegerProperty(-1);
+//    private final IntegerProperty selectedMountainId        = new SimpleIntegerProperty(-1); Redundant
 
     public ReadMountain() {
         listBergen.addAll(readFromFile());
@@ -55,9 +55,9 @@ public class ReadMountain {
         undoDisabled.bind(Bindings.isEmpty(undoStack));
         redoDisabled.bind(Bindings.isEmpty(redoStack));
 
-        selectedMountainIdProperty().addListener((observable, oldValue, newValue) -> {
-                    Mountain oldSelection = getCountry((int) oldValue);
-                    Mountain newSelection = getCountry((int) newValue);
+        selectedMountainProperty().addListener((observable, oldSelection, newSelection) -> {
+//                    Mountain oldSelection = getCountry((int) oldValue);
+//                    Mountain newSelection = getCountry((int) newValue);
 
                     if (oldSelection != null) {
                         unbindFromProxy(oldSelection);
@@ -71,7 +71,7 @@ public class ReadMountain {
                 }
         );
 
-        selectedMountainIdProperty().addListener(propertyChangeListenerForUndoSupport);
+        selectedMountainProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
     private final ChangeListener propertyChangeListenerForUndoSupport = (observable, oldValue, newValue) -> {
@@ -274,18 +274,6 @@ public class ReadMountain {
     public FilteredList<Mountain> getFilteredData() {
 
         return filteredData;
-    }
-
-    public int getSelectedMountainId() {
-        return selectedMountainId.get();
-    }
-
-    public IntegerProperty selectedMountainIdProperty() {
-        return selectedMountainId;
-    }
-
-    public void setSelectedMountainId(int selectedMountainId) {
-        this.selectedMountainId.set(selectedMountainId);
     }
 
     public boolean getRedoDisabled() {

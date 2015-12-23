@@ -64,9 +64,9 @@ public class TableMountain extends TableView<Mountain> {
         getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldSelection, newSelection) -> {
                     if(newSelection == null) {
-                        model.setSelectedMountainId(oldSelection.getIdBerg());
+                        model.setSelectedMountain(oldSelection);
                     }else{
-                        model.setSelectedMountainId(newSelection.getIdBerg());
+                        model.setSelectedMountain(newSelection);
                     }
                 });
 
