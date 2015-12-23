@@ -79,8 +79,6 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
     public void initializeControls() {
         getStyleClass().add("editorBergen");
 
-//        mapOptions = new MapOptions();
-
         nameOben    = new Label();
         hightOben   = new Label();
         regionOben  = new Label();
@@ -93,7 +91,6 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
         imageView   = new ImageView();
         imageView.setFitHeight(350);
         imageView.setFitWidth(350);
-//        imageView.setPreserveRatio(true);
         glass        = new Circle(150, 150, 150);
         imageView.isSmooth();
         imageView.setClip(glass);
@@ -175,21 +172,18 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
     public void addEventHandlers() {
         imageView.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
-            public void handle(DragEvent event) {
-                /* data is dragged over the target */
+            public void handle(DragEvent event) { //data is dragged over the target
                 Dragboard db = event.getDragboard();
                 if (db.hasFiles()) {
                     event.acceptTransferModes(TransferMode.COPY);
                 }
                 event.consume();
-
             }
         });
 
         imageView.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
-            public void handle(DragEvent event) {
-               /* data dropped */
+            public void handle(DragEvent event) {   //data dropped
                 Dragboard db = event.getDragboard();
                 if (db.hasFiles()) {
                     for (File file : db.getFiles()) {
@@ -239,8 +233,6 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
                 }
             }
         });
-
-
     }
 
     public void addValueChangedListeners(){
@@ -284,7 +276,6 @@ public class EditorMountain extends GridPane implements ViewMixin<ReadMountain>{
 
                 imageView.setImage(newSelection.getImageObjectProperty());
             }
-
         });
     }
 }

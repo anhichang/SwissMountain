@@ -21,6 +21,8 @@ public class Mountain {
     private final StringProperty caption                    = new SimpleStringProperty();
     private final ObjectProperty<Image> imageObjectProperty = new SimpleObjectProperty<>();
 
+    public Mountain(){
+    }
     public Mountain(String[] line){
         setIdBerg(Integer.parseInt(line[0]));
         setName(line[1]);
@@ -34,10 +36,8 @@ public class Mountain {
         setProminence(Double.parseDouble(line[9]));
         setProminencePoint(line[10]);
         setCaption(line[11]);
-        imageObjectProperty.setValue(new Image("ch/fhnw/oop/res/mountainpictures/" + getIdBerg()+ "-1.jpg"));
-    }
-    public Mountain(){
 
+        imageObjectProperty.setValue(new Image("ch/fhnw/oop/res/mountainpictures/" + getIdBerg()+ "-1.jpg"));
     }
 
     @Override

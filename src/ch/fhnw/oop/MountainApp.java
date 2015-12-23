@@ -15,13 +15,13 @@ public class MountainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage = new Stage(StageStyle.DECORATED);
-        ReadMountain model = new ReadMountain();
-        Parent rootPanel = new MountainUI(model);
+        primaryStage        = new Stage(StageStyle.DECORATED);
+        ReadMountain model  = new ReadMountain();
+        Parent rootPanel    = new MountainUI(model);
 
-        scene = new Scene(rootPanel, 300, 250);
+        scene               = new Scene(rootPanel, 300, 250);
 
-        styleSheet = getClass().getResource("styleBlack.css").toExternalForm();
+        styleSheet          = getClass().getResource("styleBlack.css").toExternalForm();
         scene.getStylesheets().add(styleSheet);
 
         primaryStage.setMinWidth(1100);

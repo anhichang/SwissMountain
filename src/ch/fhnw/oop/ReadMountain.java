@@ -56,9 +56,6 @@ public class ReadMountain {
         redoDisabled.bind(Bindings.isEmpty(redoStack));
 
         selectedMountainProperty().addListener((observable, oldSelection, newSelection) -> {
-//                    Mountain oldSelection = getCountry((int) oldValue);
-//                    Mountain newSelection = getCountry((int) newValue);
-
                     if (oldSelection != null) {
                         unbindFromProxy(oldSelection);
                         disableUndoSupport(oldSelection);
@@ -70,7 +67,6 @@ public class ReadMountain {
                     }
                 }
         );
-
         selectedMountainProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
@@ -100,7 +96,6 @@ public class ReadMountain {
     }
 
     private void unbindFromProxy(Mountain country) {
-
         mountainProxy.idBergProperty().unbindBidirectional(country.idBergProperty());
         mountainProxy.nameProperty().unbindBidirectional(country.nameProperty());
         mountainProxy.hightProperty().unbindBidirectional(country.hightProperty());
@@ -142,12 +137,12 @@ public class ReadMountain {
         country.captionProperty().addListener(propertyChangeListenerForUndoSupport);
     }
 
-    private Mountain getCountry(int id) {
-        Optional<Mountain> pmOptional = listBergen.stream()
-                .filter(mountain -> mountain.getIdBerg() == id)
-                .findAny();
-        return pmOptional.isPresent() ? pmOptional.get() : null;
-    }
+//    private Mountain getMountain(int id) {
+//        Optional<Mountain> pmOptional = listBergen.stream()
+//                .filter(mountain -> mountain.getIdBerg() == id)
+//                .findAny();
+//        return pmOptional.isPresent() ? pmOptional.get() : null;
+//    }
 
     public void undo() {
         if (undoStack.isEmpty()) {
@@ -172,7 +167,6 @@ public class ReadMountain {
     }
 
     public void remove() {
-
         laufNummer--;
         listBergen.remove(getSelectedMountain());
     }
@@ -184,7 +178,6 @@ public class ReadMountain {
         addMountain.setName("");
         listBergen.add(laufNummer, addMountain);
         setSelectedMountain(addMountain);
-
     }
 
     public void setFilterString(String newValue) {
@@ -247,10 +240,6 @@ public class ReadMountain {
 
     }
 
-    public Mountain getMountainProxy() {
-        return mountainProxy;
-    }
-
     public Mountain getSelectedMountain() {
         return selectedMountain.get();
     }
@@ -276,27 +265,11 @@ public class ReadMountain {
         return filteredData;
     }
 
-    public boolean getRedoDisabled() {
-        return redoDisabled.get();
-    }
-
     public BooleanProperty redoDisabledProperty() {
         return redoDisabled;
     }
 
-    public void setRedoDisabled(boolean redoDisabled) {
-        this.redoDisabled.set(redoDisabled);
-    }
-
-    public boolean getUndoDisabled() {
-        return undoDisabled.get();
-    }
-
     public BooleanProperty undoDisabledProperty() {
         return undoDisabled;
-    }
-
-    public void setUndoDisabled(boolean undoDisabled) {
-        this.undoDisabled.set(undoDisabled);
     }
 }

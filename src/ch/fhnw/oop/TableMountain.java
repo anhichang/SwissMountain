@@ -7,22 +7,26 @@ import javafx.scene.control.TableView;
 /**
  * Created by ANhi on 11/27/2015.
  */
-public class TableMountain extends TableView<Mountain> {
-
+public class TableMountain extends TableView<Mountain> implements ViewMixin<ReadMountain>{
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
     private ReadMountain model;
 
     public TableMountain(ReadMountain readMountain) {
         this.model = readMountain;
+        init();
+    }
+
+    @Override
+    public void init() {
         initializeControls();
+        layoutControls();
+        addEventHandlers();
+        addValueChangedListeners();
+        addBindings();
     }
 
-    private void initializeControls() {
-        initializeColTabelle();
-        eventEvent();
-    }
-
-    public void initializeColTabelle() {
+    @Override
+    public void layoutControls() {
 //    private TableView<Mountain> tableView; REDUNDANT!!!!!!!!!!!!!!!
 //        setItems(model.getListBergen()); braucht es nicht mehr
 
@@ -52,7 +56,8 @@ public class TableMountain extends TableView<Mountain> {
         setItems(sortedList);
     }
 
-    private void eventEvent() {
+    @Override
+    public void addEventHandlers() {
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
@@ -69,6 +74,24 @@ public class TableMountain extends TableView<Mountain> {
                         model.setSelectedMountain(newSelection);
                     }
                 });
+    }
+
+    @Override
+    public void addValueChangedListeners() {
+
+    }
+
+    @Override
+    public void addBindings() {
+
+    }
+
+    @Override
+    public ReadMountain getPresentationModel() {
+        return null;
+    }
+
+    public void initializeControls() {
 
     }
 }

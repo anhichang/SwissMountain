@@ -68,14 +68,14 @@ public class HeaderMountain extends GridPane implements ViewMixin<Mountain> {
     }
 
     public void initializeControls() {
-        saveImage = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/saveIcon.png"));
-        addImage = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/addIcon.png"));
-        deleteImage = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/deleteIcon.png"));
-        backImage = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/backIcon.png"));
-        forwardImage = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/forwardIcon.png"));
+        saveImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/saveIcon.png"));
+        addImage        = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/addIcon.png"));
+        deleteImage     = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/deleteIcon.png"));
+        backImage       = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/backIcon.png"));
+        forwardImage    = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/forwardIcon.png"));
 
-        whiteStyle = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/whiteStyle.png"));
-        blackStyle = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/blackStyle.png"));
+        whiteStyle      = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/whiteStyle.png"));
+        blackStyle      = new ImageView(new Image("ch/fhnw/oop/res/headerPicture/blackStyle.png"));
 
         saveImage.setFitWidth(20);
         saveImage.setFitHeight(20);
@@ -92,15 +92,15 @@ public class HeaderMountain extends GridPane implements ViewMixin<Mountain> {
         blackStyle.setFitWidth(20);
         blackStyle.setFitHeight(20);
 
-        saveButton = new Button("", saveImage);
-        addButton = new Button("", addImage);
-        deleteButton = new Button("", deleteImage);
-        undoButton = new Button("", backImage);
-        redoButton = new Button("", forwardImage);
+        saveButton          = new Button("", saveImage);
+        addButton           = new Button("", addImage);
+        deleteButton        = new Button("", deleteImage);
+        undoButton          = new Button("", backImage);
+        redoButton          = new Button("", forwardImage);
 
-        searchTextField = new TextField("Search");
-        blackStyleButton = new Button("", blackStyle);
-        whiteStyleButton = new Button("", whiteStyle);
+        searchTextField     = new TextField("Search");
+        blackStyleButton    = new Button("", blackStyle);
+        whiteStyleButton    = new Button("", whiteStyle);
 
         saveButton.setTooltip(tooltipSave);
         addButton.setTooltip(tooltipAdd);
@@ -113,16 +113,16 @@ public class HeaderMountain extends GridPane implements ViewMixin<Mountain> {
     }
 
     public void layoutControls() {
-        ColumnConstraints cc = new ColumnConstraints();
+        ColumnConstraints cc                    = new ColumnConstraints();
         cc.setHgrow(Priority.ALWAYS);
         getColumnConstraints().addAll(cc, cc);
 
-        RowConstraints rc = new RowConstraints();
+        RowConstraints rc                       = new RowConstraints();
         rc.setVgrow(Priority.ALWAYS);
         getRowConstraints().addAll(rc);
 
-        HBox hBoRleft = new HBox();
-        HBox hBoxRight = new HBox();
+        HBox hBoRleft                           = new HBox();
+        HBox hBoxRight                          = new HBox();
 
         hBoRleft.getChildren().addAll(saveButton, addButton, deleteButton, undoButton, redoButton);
         hBoRleft.setPadding(new Insets(10, 5, 5, 10));
@@ -152,8 +152,8 @@ public class HeaderMountain extends GridPane implements ViewMixin<Mountain> {
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             model.setFilterString(newValue);
-
         });
+
         undoButton.disableProperty().bind(model.undoDisabledProperty());
         redoButton.disableProperty().bind(model.redoDisabledProperty());
     }
