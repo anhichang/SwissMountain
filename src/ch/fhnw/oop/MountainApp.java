@@ -21,7 +21,7 @@ public class MountainApp extends Application {
 
         scene               = new Scene(rootPanel, 300, 250);
 
-        styleSheet          = getClass().getResource("styleBlack.css").toExternalForm();
+        styleSheet          = getClass().getResource("res/styleBlack.css").toExternalForm();
         scene.getStylesheets().add(styleSheet);
 
         primaryStage.setMinWidth(1100);

@@ -44,8 +44,8 @@ public class HeaderMountain extends GridPane implements ViewMixin<Mountain> {
     final Tooltip tooltipBlack      = new Tooltip("Change to black style");
     final Tooltip tooltipWhite      = new Tooltip("Change to white style");
 
-    private String styleSheetWhite  = getClass().getResource("styleWhite.css").toExternalForm();
-    private String styleSheetBlack  = getClass().getResource("styleBlack.css").toExternalForm();
+    private String styleSheetWhite  = getClass().getResource("res/styleWhite.css").toExternalForm();
+    private String styleSheetBlack  = getClass().getResource("res/styleBlack.css").toExternalForm();
 
     private ReadMountain model;
 

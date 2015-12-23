@@ -29,7 +29,7 @@ public class ReadMountain {
     private static int laufNummerID;
 
     private final StringProperty windowTitle                = new SimpleStringProperty("Mountain CH");
-    private static final String FILE_NAME                   = "mountains.csv";
+    private static final String FILE_NAME                   = "res/mountains.csv";
 
     private final ObservableList<Mountain> listBergen       = FXCollections.observableArrayList();
     private final ObjectProperty<Mountain> selectedMountain = new SimpleObjectProperty<>();
