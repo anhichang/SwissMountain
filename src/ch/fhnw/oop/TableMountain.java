@@ -61,7 +61,7 @@ public class TableMountain extends TableView<Mountain> implements ViewMixin<Read
         getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldSelection, newSelection) -> model.setSelectedMountain(newSelection));
 
-        //redundant
+//        redundant
 //        model.selectedMountainProperty().addListener(
 //                (observableValue, oldSelection, newSelection) -> {
 //                    model.setSelectedMountain(newSelection);
